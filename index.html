@@ -35,11 +35,7 @@
       font-weight: 300;
       overflow-x: hidden;
     }
-<script>
-  if (sessionStorage.getItem('auth') !== 'ok') {
-    location.href = 'gate.html';
-  }
-</script>
+
     a { text-decoration: none; color: inherit; }
 
     /* ナビ */
@@ -774,7 +770,11 @@
   </style>
 </head>
 <body>
-
+<script>
+  if (sessionStorage.getItem('auth') !== 'ok') {
+    location.href = 'gate.html';
+  }
+</script>
   <nav>
     <div class="nav-logo">Rika Yamada</div>
     <ul class="nav-links">
