@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>RIKA YAMADA — Web Designer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Sans+JP:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sage: #7a9e87;
+      --sage-light: #a8c4b0;
+      --sage-pale: #d4e5d8;
+      --sage-mist: #eef4f0;
+      --yellow: #e8d89a;
+      --yellow-pale: #f5efc8;
+      --yellow-mist: #faf7e8;
+      --cream: #faf8f3;
+      --brown: #4a3d2e;
+      --brown-mid: #7a6555;
+      --brown-light: #b8a090;
+      --white: #ffffff;
+      --text: #3a3028;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ナビ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(250,248,243,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(168,196,176,0.3);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--brown);
+      font-style: italic;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+    .nav-links a {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--sage);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--sage); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ヒーロー */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--sage-mist);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5rem 8rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+
+    .hero-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--sage); }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: 0.05em;
+      color: var(--brown);
+      opacity: 0;
+      animation: fadeUp 1s ease 0.5s forwards;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--sage);
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--brown-light);
+      margin: 0.8rem 0 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.6s forwards;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 2.2;
+      color: var(--brown-mid);
+      max-width: 340px;
+      border-left: 2px solid var(--sage-pale);
+      padding-left: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.7s forwards;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s forwards;
+    }
+
+    .btn-primary {
+      background: var(--sage);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      border: none;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--sage-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(122,158,135,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--brown-mid);
+      padding: 0.8rem 1.8rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      border: 1px solid var(--brown-light);
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover { border-color: var(--sage); color: var(--sage); }
+
+    /* 右側：イラスト */
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    /* 波形の境界（左側との分割） */
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: -40px;
+      width: 80px;
+      background: var(--sage-mist);
+      border-radius: 0 50% 50% 0;
+      z-index: 1;
+    }
+
+    .hero-deco-circle {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .hero-deco-c1 {
+      width: 380px; height: 380px;
+      border: 1px solid rgba(168,196,176,0.25);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-deco-c2 {
+      width: 280px; height: 280px;
+      border: 1px solid rgba(232,216,154,0.35);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-illust-wrap {
+      position: relative;
+      z-index: 2;
+      width: 72%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--sage-mist) 0%, var(--yellow-mist) 100%);
+      border: 1px solid var(--sage-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .illust-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--sage-light);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .illust-ph-icon { font-size: 2.5rem; opacity: 0.4; }
+    .illust-ph-text { font-style: italic; font-size: 1rem; opacity: 0.6; }
+    .illust-ph-sub {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      opacity: 0.4;
+    }
+
+    /* ヒーロー下の波 */
+    .hero-wave {
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      z-index: 5;
+      line-height: 0;
+    }
+
+    .hero-wave svg { display: block; width: 100%; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ティッカー */
+    .ticker {
+      background: var(--yellow-pale);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(232,216,154,0.5);
+      border-bottom: 1px solid rgba(232,216,154,0.5);
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-item {
+      font-style: italic;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--brown-mid);
+      padding: 0 2.5rem;
+    }
+
+    .ticker-sep { color: var(--sage); }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* 波セパレーター */
+    .wave-sep { overflow: hidden; line-height: 0; margin-top: -1px; }
+    .wave-sep svg { display: block; width: 100%; }
+
+    /* セクション共通 */
+    .section { padding: 7rem 5rem; position: relative; }
+    .section-sage { background: var(--sage-mist); }
+    .section-yellow { background: var(--yellow-mist); }
+    .section-cream { background: var(--cream); }
+
+    .section-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--sage);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-label::before { content: ''; width: 25px; height: 1px; background: var(--sage); }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4.5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: 0.03em;
+      color: var(--brown);
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--sage); }
+
+    /* WORKS */
+    .works-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .works-filter { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .filter-btn {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid var(--sage-pale);
+      background: none;
+      cursor: pointer;
+      border-radius: 20px;
+      color: var(--brown-mid);
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--sage);
+      color: var(--white);
+      border-color: var(--sage);
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .work-card { cursor: pointer; }
+
+    .work-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 8px;
+      position: relative;
+      background: var(--sage-pale);
+    }
+
+    .work-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .work-card:hover .work-img img { transform: scale(1.05); }
+
+    .work-img-ph {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sage-mist) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--sage-light);
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(122,158,135,0);
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .work-card:hover .work-overlay { background: rgba(122,158,135,0.5); }
+
+    .work-overlay-text {
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: 0.1em;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s;
+    }
+
+    .work-card:hover .work-overlay-text { opacity: 1; transform: translateY(0); }
+
+    .work-info { padding: 1rem 0; }
+
+    .work-category {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.3rem;
+    }
+
+    .work-name {
+      font-size: 1.05rem;
+      color: var(--brown);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .work-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+    .work-tag {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      color: var(--brown-light);
+      border: 1px solid var(--sage-pale);
+      padding: 0.15rem 0.6rem;
+      border-radius: 10px;
+    }
+
+    /* SKILL */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .skills-intro p {
+      font-size: 1rem;
+      line-height: 2.3;
+      color: var(--brown-mid);
+      margin-bottom: 2rem;
+    }
+
+    .skill-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .skill-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-item-name { font-size: 1.05rem; color: var(--brown); }
+
+    .skill-item-level {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--sage);
+    }
+
+    .skill-bar-track { height: 1px; background: var(--sage-pale); position: relative; }
+
+    .skill-bar-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: linear-gradient(to right, var(--sage), var(--sage-light));
+    }
+
+    .skills-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--sage-pale);
+    }
+
+    .skill-card {
+      background: var(--cream);
+      padding: 2rem 1.5rem;
+      transition: background 0.3s;
+    }
+
+    .skill-card:hover { background: var(--white); }
+    .skill-card-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+
+    .skill-card-name {
+      font-size: 1.1rem;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-card-desc {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.68rem;
+      color: var(--brown-light);
+      line-height: 1.9;
+    }
+
+    /* ABOUT */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-photo-wrap { position: relative; }
+
+    .about-photo {
+      aspect-ratio: 3/4;
+      background: var(--sage-pale);
+      border-radius: 60% 40% 55% 45% / 50% 45% 55% 50%;
+      overflow: hidden;
+    }
+
+    .about-photo-ph {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--sage-pale) 0%, var(--yellow-pale) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--sage-light);
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .about-deco {
+      position: absolute;
+      bottom: -1rem; right: -1rem;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: var(--yellow-pale);
+      z-index: -1;
+    }
+
+    .about-lead {
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: var(--brown);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.8rem;
+      line-height: 2.3;
+      color: var(--brown-mid);
+      margin-bottom: 1.2rem;
+    }
+
+    .career-section {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--sage-pale);
+    }
+
+    .career-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.5rem;
+    }
+
+    .career-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .career-item {
+      display: grid;
+      grid-template-columns: 75px 1fr;
+      gap: 1rem;
+      align-items: baseline;
+    }
+
+    .career-year { font-style: italic; font-size: 0.95rem; color: var(--sage); }
+
+    .career-desc {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem;
+      color: var(--brown-mid);
+      line-height: 1.8;
+    }
+
+    /* CONTACT */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-intro p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.82rem;
+      line-height: 2.3;
+      color: var(--brown-mid);
+      margin-bottom: 2rem;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .contact-item-label {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-item-value { font-size: 1.1rem; color: var(--brown); }
+
+    .contact-form-wrap {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--sage-pale);
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+
+    .form-label {
+      display: block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: var(--sage-mist);
+      border: 1px solid var(--sage-pale);
+      padding: 0.75rem 1rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.78rem;
+      color: var(--brown);
+      outline: none;
+      border-radius: 4px;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--sage); }
+    .form-textarea { min-height: 100px; resize: vertical; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--sage);
+      color: var(--white);
+      padding: 0.9rem;
+      border: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+      background: var(--sage-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(122,158,135,0.25);
+    }
+
+    /* フッター */
+    footer {
+      background: var(--brown);
+      padding: 2.5rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-copy {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* アニメーション */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right::before { display: none; }
+      .hero-right { min-height: 300px; }
+      .hero-left { padding: 6rem 1.5rem 3rem; }
+      .section { padding: 4rem 1.5rem; }
+      .works-grid { grid-template-columns: 1fr; }
+      .works-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .skills-layout, .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .skills-cards { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Rika Yamada</div>
+    <ul class="nav-links">
+      <li><a href="#works">Works</a></li>
+      <li><a href="#skill">Skill</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ヒーロー -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Web Designer / Art Director</div>
+      <h1 class="hero-name">
+        Rika<br>
+        <em>Yamada</em>
+      </h1>
+      <div class="hero-subtitle">PORTFOLIO</div>
+      <p class="hero-desc">
+        LP・バナー・ECからコーディングまで。<br>
+        デザインで、伝わる体験をつくります。
+      </p>
+      <div class="hero-btns">
+        <a href="#works" class="btn-primary">Works を見る</a>
+        <a href="#contact" class="btn-outline">Contact</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-deco-circle hero-deco-c1"></div>
+      <div class="hero-deco-circle hero-deco-c2"></div>
+      <div class="hero-illust-wrap">
+        <!--
+          イラスト差し替え：
+          <img src="illustration.png" alt="" style="width:100%;height:100%;object-fit:cover;">
+        -->
+        <div class="illust-placeholder">
+          <div class="illust-ph-icon">🌿</div>
+          <div class="illust-ph-text">Illustration Here</div>
+          <div class="illust-ph-sub">水彩イラストを配置</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#faf8f3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ティッカー -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">LP Design</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">Banner Design</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">EC Design</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">HTML / CSS Coding</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">Illustration</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">Photo Direction</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">Movie Editing</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">LP Design</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">Banner Design</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">EC Design</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">HTML / CSS Coding</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">Illustration</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">Photo Direction</span><span class="ticker-item ticker-sep">✿</span>
+      <span class="ticker-item">Movie Editing</span><span class="ticker-item ticker-sep">✿</span>
+    </div>
+  </div>
+
+  <!-- WORKS -->
+  <div class="wave-sep">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,0 C480,50 960,0 1440,0 L1440,50 L0,50 Z" fill="#eef4f0"/>
+    </svg>
+  </div>
+
+  <section class="section section-sage" id="works">
+    <div class="fade-in">
+      <div class="works-header">
+        <div>
+          <div class="section-label">01 — Works</div>
+          <h2 class="section-title">Selected<br><em>Works</em></h2>
+        </div>
+        <div class="works-filter">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">LP</button>
+          <button class="filter-btn">Banner</button>
+          <button class="filter-btn">EC</button>
+          <button class="filter-btn">Others</button>
+        </div>
+      </div>
+      <div class="works-grid">
+        <a class="work-card" href="works-2024jins_jukencplp.html">
+          <div class="work-img">
+            <img src="img/tham_JINS_2024_ouen_.png" alt="JINS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="work-img-ph" style="display:none;">JINS — 受験生LP</div>
+            <div class="work-overlay"><span class="work-overlay-text">View Work</span></div>
+          </div>
+          <div class="work-info">
+            <div class="work-category">LP / Banner</div>
+            <div class="work-name">【JINS】受験生応援キャンペーンLP</div>
+            <div class="work-tags"><span class="work-tag">Design</span><span class="work-tag">Banner</span></div>
+          </div>
+        </a>
+        <a class="work-card" href="works-tokyo_komekopan.html">
+          <div class="work-img">
+            <img src="img/tham_tokyo_komekopan.png" alt="東京都" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="work-img-ph" style="display:none;">東京都 — 米粉パンLP</div>
+            <div class="work-overlay"><span class="work-overlay-text">View Work</span></div>
+          </div>
+          <div class="work-info">
+            <div class="work-category">LP</div>
+            <div class="work-name">【東京都】米粉パンキャンペーンLP</div>
+            <div class="work-tags"><span class="work-tag">Design</span></div>
+          </div>
+        </a>
+        <a class="work-card" href="works-2022winterrbox.html">
+          <div class="work-img">
+            <img src="img/tham_2022winbox.jpg" alt="WinterBox" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="work-img-ph" style="display:none;">WinterBox — LP</div>
+            <div class="work-overlay"><span class="work-overlay-text">View Work</span></div>
+          </div>
+          <div class="work-info">
+            <div class="work-category">LP / Banner / Coding</div>
+            <div class="work-name">【アイスタイル】WinterBox LP</div>
+            <div class="work-tags"><span class="work-tag">Design</span><span class="work-tag">Banner</span><span class="work-tag">Coding</span></div>
+          </div>
+        </a>
+        <a class="work-card" href="itoyokado_2024_china.html">
+          <div class="work-img">
+            <img src="img/tham_itoyokado_china2024.jpg" alt="ネットスーパー" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="work-img-ph" style="display:none;">ネットスーパー — LP</div>
+            <div class="work-overlay"><span class="work-overlay-text">View Work</span></div>
+          </div>
+          <div class="work-info">
+            <div class="work-category">LP / Banner</div>
+            <div class="work-name">【ネットスーパー】キャンペーンLP</div>
+            <div class="work-tags"><span class="work-tag">Design</span><span class="work-tag">Banner</span></div>
+          </div>
+        </a>
+        <a class="work-card" href="works-2022luminousclb1.html">
+          <div class="work-img">
+            <img src="img/tham_lmns1.png" alt="ビーズソファ" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="work-img-ph" style="display:none;">ビーズソファ — EC</div>
+            <div class="work-overlay"><span class="work-overlay-text">View Work</span></div>
+          </div>
+          <div class="work-info">
+            <div class="work-category">EC</div>
+            <div class="work-name">【ビーズソファ】EC制作</div>
+            <div class="work-tags"><span class="work-tag">PhotoDirection</span><span class="work-tag">Movie</span><span class="work-tag">Design</span></div>
+          </div>
+        </a>
+        <a class="work-card" href="works-graphic1.html">
+          <div class="work-img">
+            <img src="img/tham_gra.png" alt="グラフィック" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="work-img-ph" style="display:none;">Graphic / Illustration</div>
+            <div class="work-overlay"><span class="work-overlay-text">View Work</span></div>
+          </div>
+          <div class="work-info">
+            <div class="work-category">Graphic / Illustration</div>
+            <div class="work-name">グラフィック・イラスト制作</div>
+            <div class="work-tags"><span class="work-tag">GraphicDesign</span><span class="work-tag">Illustration</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILL -->
+  <div class="wave-sep">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,50 C480,0 960,50 1440,50 L1440,0 L0,0 Z" fill="#eef4f0"/>
+    </svg>
+  </div>
+
+  <section class="section section-cream" id="skill">
+    <div class="skills-layout fade-in">
+      <div class="skills-intro">
+        <div class="section-label">02 — Skill</div>
+        <h2 class="section-title">Skill &<br><em>Tools</em></h2>
+        <p>LP・バナーからEC制作、コーディング、動画編集まで幅広く対応。Figmaを中心にチームでの制作進行も得意としています。</p>
+        <div class="skill-list">
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Figma / Adobe XD</span>
+              <span class="skill-item-level">Advanced</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Photoshop / Illustrator</span>
+              <span class="skill-item-level">Advanced</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">HTML / CSS</span>
+              <span class="skill-item-level">Intermediate</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-header">
+              <span class="skill-item-name">Premiere Pro / Capcut</span>
+              <span class="skill-item-level">Intermediate</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%;"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skills-cards">
+        <div class="skill-card">
+          <div class="skill-card-icon">🌸</div>
+          <div class="skill-card-name">LP / Banner</div>
+          <div class="skill-card-desc">BtoC・BtoB問わず、売れるLPとバナーを制作。広告代理店での実績多数。</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🛍️</div>
+          <div class="skill-card-name">EC Design</div>
+          <div class="skill-card-desc">楽天・Yahoo・Amazon等のEC制作。写真ディレクションも対応。</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">💻</div>
+          <div class="skill-card-name">Coding</div>
+          <div class="skill-card-desc">HTML/CSSによるレスポンシブコーディング。改修・更新対応可。</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🎬</div>
+          <div class="skill-card-name">Movie</div>
+          <div class="skill-card-desc">動画バナー・SNS動画・商品紹介動画の編集・制作に対応。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="wave-sep">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,0 C360,50 1080,0 1440,0 L1440,50 L0,50 Z" fill="#faf7e8"/>
+    </svg>
+  </div>
+
+  <section class="section section-yellow" id="about">
+    <div class="about-layout fade-in">
+      <div class="about-photo-wrap">
+        <div class="about-photo">
+          <div class="about-photo-ph">
+            <span>Photo</span>
+            <span style="font-family:'Noto Sans JP',sans-serif;font-size:0.58rem;opacity:0.5;">プロフィール写真</span>
+          </div>
+        </div>
+        <div class="about-deco"></div>
+      </div>
+      <div class="about-content">
+        <div class="section-label">03 — About</div>
+        <h2 class="section-title">About<br><em>Me</em></h2>
+        <div class="about-lead">広い視点で、<br>デザインに関わってきました。</div>
+        <p class="about-text">愛知県出身。美術大学デザイン学部卒業後、Webデザイナーとして複数の企業に従事。ネイルサロン経営の経験から、クライアントビジネスの視点も持ち合わせています。</p>
+        <p class="about-text">LP・バナー・EC・動画編集と幅広く経験。現在はAdobe Stockイラストレーターとしても活動中。</p>
+        <div class="career-section">
+          <div class="career-label">Career</div>
+          <div class="career-list">
+            <div class="career-item"><span class="career-year">2005–08</span><span class="career-desc">Web制作会社にてWebデザイナーとして従事</span></div>
+            <div class="career-item"><span class="career-year">2008–20</span><span class="career-desc">ネイルサロン起業・経営 / Yahoo ECにて自社商材販売</span></div>
+            <div class="career-item"><span class="career-year">2022</span><span class="career-desc">総合商社EC部門 Webデザイナー</span></div>
+            <div class="career-item"><span class="career-year">2023</span><span class="career-desc">ITベンチャー マーケティング部 Webデザイナー</span></div>
+            <div class="career-item"><span class="career-year">2024–25</span><span class="career-desc">広告代理店 LP・各種広告デザイン制作</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="wave-sep">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,50 C480,0 960,50 1440,50 L1440,0 L0,0 Z" fill="#faf7e8"/>
+    </svg>
+  </div>
+
+  <section class="section section-sage" id="contact">
+    <div class="contact-layout fade-in">
+      <div class="contact-intro">
+        <div class="section-label">04 — Contact</div>
+        <h2 class="section-title">Get in<br><em>Touch</em></h2>
+        <p>お仕事のご依頼・ご相談は<br>下記よりお気軽にどうぞ。</p>
+        <div class="contact-items">
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">rk401ok@gmail.com</div>
+          </div>
+          <div>
+            <div class="contact-item-label">X (Twitter)</div>
+            <div class="contact-item-value">@rdesign41</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <div class="form-group">
+          <label class="form-label">お名前</label>
+          <input type="text" class="form-input" placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label class="form-label">メールアドレス</label>
+          <input type="email" class="form-input" placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">ご用件</label>
+          <select class="form-select">
+            <option>お仕事のご依頼</option>
+            <option>ご質問・ご相談</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">メッセージ</label>
+          <textarea class="form-textarea" placeholder="ご用件をご記入ください"></textarea>
+        </div>
+        <button class="form-submit">Send Message ✿</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Rika Yamada</div>
+    <p class="footer-copy">© Rika Yamada. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
