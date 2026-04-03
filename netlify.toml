@@ -1,1 +1,5 @@
 
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Basic-Auth = "rika:pass1234"
