@@ -1092,31 +1092,29 @@
 
 <input type="email" name="email" class="form-input" placeholder="example@email.com">
 
-
-
-      
-      <form class="contact-form-wrap" action="https://formspree.io/f/mwvwrjrl" method="POST">
-        <div class="form-group">
-          <label class="form-label">お名前</label>
-          <input type="text" class="form-input" placeholder="山田 太郎">
-        </div>
-        <div class="form-group">
-          <label class="form-label">メールアドレス</label>
-          <input type="email" class="form-input" placeholder="example@email.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">ご用件</label>
-         <select name="subject" class="form-select">
-  <option>お仕事のご依頼</option>
-  <option>ご質問・ご相談</option>
-  <option>その他</option>
-</select>
-
-<textarea name="message" class="form-textarea" placeholder="ご用件をご記入ください"></textarea>
-
-        </div>
-        <button type="submit" class="form-submit">送信する</button>
-      </form>
+<form class="contact-form-wrap" action="https://formspree.io/f/mwvwrjrl" method="POST">
+  <div class="form-group">
+    <label class="form-label">お名前</label>
+    <input type="text" name="name" class="form-input" placeholder="山田 太郎">
+  </div>
+  <div class="form-group">
+    <label class="form-label">メールアドレス</label>
+    <input type="email" name="email" class="form-input" placeholder="example@email.com">
+  </div>
+  <div class="form-group">
+    <label class="form-label">ご用件</label>
+    <select name="subject" class="form-select">
+      <option>お仕事のご依頼</option>
+      <option>ご質問・ご相談</option>
+      <option>その他</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">メッセージ</label>
+    <textarea name="message" class="form-textarea" placeholder="ご用件をご記入ください"></textarea>
+  </div>
+  <button type="submit" class="form-submit">送信する</button>
+</form>
     </div>
   </section>
 
