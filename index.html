@@ -767,7 +767,11 @@
   </style>
 </head>
 <body>
-
+<script>
+    if (sessionStorage.getItem('auth') !== 'ok') {
+      location.href = 'gate.html';
+    }
+  </script>
   <nav>
     <div class="nav-logo">Rika Yamada</div>
     <ul class="nav-links">
