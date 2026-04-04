@@ -1105,10 +1105,7 @@
   </footer>
 
   <script>
-    // 認証チェック
-    if (sessionStorage.getItem('auth') !== 'ok') {
-      location.href = 'gate.html';
-    }
+   
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
