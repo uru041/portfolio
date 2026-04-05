@@ -711,20 +711,18 @@
       background: linear-gradient(to top, var(--white), transparent);
     }
 
-    /* レスポンシブ */
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .page-hero {padding-bottom: 3rem; }
-      .breadcrumb { padding: 1rem 1.5rem; }
-      .page-hero { padding: 3rem 1.5rem 0; }
-      .page-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
-      .article-sidebar { order: -1; }
-      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
-      .article-nav { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; }
-    }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .breadcrumb { padding: 1rem 1.5rem; }
+  .page-hero { padding: 3rem 1.5rem 3rem; }  /* ★ 最後を0→3remに */
+  .page-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+  .article-sidebar { order: -1; }
+  .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
+  .article-nav { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
   </style>
 </head>
 <body>
