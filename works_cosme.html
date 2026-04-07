@@ -27,30 +27,10 @@
     }
 
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--cream);
-      color: var(--text);
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
-
+    body { background: var(--cream); color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 300; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
 
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 4rem;
-      background: rgba(250,248,243,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(168,196,176,0.3);
-    }
-
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(250,248,243,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(168,196,176,0.3); }
     .nav-logo { font-style: italic; font-size: 1.1rem; letter-spacing: 0.2em; color: var(--brown); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brown-mid); position: relative; transition: color 0.3s; }
@@ -93,6 +73,9 @@
     .img-grid-item { aspect-ratio: 1; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sage-mist) 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-style: italic; color: var(--sage-light); font-size: 0.8rem; overflow: hidden; }
     .img-grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+    .banner-stack { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+    .banner-stack img { width: 100%; height: auto; display: block; border-radius: 4px; }
+
     .process-block { background: var(--sage-mist); border-radius: 8px; padding: 2rem; margin: 2.5rem 0; border-left: 3px solid var(--sage); }
     .process-block-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
     .process-block-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem; line-height: 2.2; color: var(--brown-mid); }
@@ -122,31 +105,8 @@
     .footer-logo { font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; }
     .footer-copy { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.25); }
 
-    .banner-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.banner-stack img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 4px;
-}
-
-    /* ===== LPスクロールモックアップ ===== */
-    .lp-mockup-section {
-      background: var(--sage-mist);
-      padding: 5rem;
-      text-align: center;
-    }
-
-    .lp-mockup-section + .lp-mockup-section {
-      padding-top: 0;  /* 2つ目は上パディングを詰める */
-    }
-
+    .lp-mockup-section { background: var(--sage-mist); padding: 5rem; text-align: center; }
+    .lp-mockup-section + .lp-mockup-section { padding-top: 0; }
     .lp-mockup-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage); display: inline-flex; align-items: center; gap: 0.8rem; margin-bottom: 3rem; }
     .lp-mockup-label::before, .lp-mockup-label::after { content: ''; width: 40px; height: 1px; background: var(--sage-pale); }
 
@@ -229,17 +189,16 @@
     <span class="breadcrumb-sep">›</span>
     <a href="index.html#works">Works</a>
     <span class="breadcrumb-sep">›</span>
-    <span>【LP/Banner】SummerBoxキャンペーンLP</span>
+    <span>【LP/Banner/Coding】@cosme BLOOMBOX キャンペーンLP</span>
   </div>
 
-  <!-- ページヘッダー -->
   <div class="page-hero">
     <div class="page-hero-inner">
       <div>
         <div class="page-hero-label">LP / Banner / Coding</div>
         <h1 class="page-hero-title">
-          SummerBoxキャンペーン<br>
-          <em>販促LP</em>
+          @cosme BLOOMBOX<br>
+          <em>Summer &amp; Winter</em>
         </h1>
         <div class="page-hero-meta">
           <div class="meta-item">
@@ -248,7 +207,7 @@
           </div>
           <div class="meta-item">
             <div class="meta-label">Year</div>
-            <div class="meta-value">2023</div>
+            <div class="meta-value">2022–2023</div>
           </div>
           <div class="meta-item">
             <div class="meta-label">Role</div>
@@ -270,11 +229,10 @@
     </svg>
   </div>
 
-  <!-- ★ スクロールビュー 1セット目 -->
+  <!-- スクロールビュー 1セット目：SummerBox -->
   <div class="lp-mockup-section">
-    <div class="lp-mockup-label">LP Scroll Preview</div>
+    <div class="lp-mockup-label">Summer Box — LP Scroll Preview</div>
     <div class="mockup-row">
-      <!-- PCブラウザ -->
       <div class="browser-frame">
         <div class="browser-topbar">
           <div class="browser-dots">
@@ -293,13 +251,11 @@
               <div class="dummy-block dummy-section-alt"></div>
               <div class="dummy-block dummy-narrow"></div>
               <div class="dummy-block dummy-wide"></div>
-              <div class="dummy-block dummy-section"></div>
               <div class="dummy-block dummy-footer"></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- スマホ -->
       <div class="phone-frame">
         <div class="phone-notch"></div>
         <div class="phone-viewport">
@@ -316,12 +272,12 @@
         </div>
       </div>
     </div>
-  </div><!-- /lp-mockup-section 1 -->
+  </div>
 
-  <!-- ★ スクロールビュー 2セット目 -->
+  <!-- スクロールビュー 2セット目：WinterBox -->
   <div class="lp-mockup-section">
+    <div class="lp-mockup-label">Winter Box — LP Scroll Preview</div>
     <div class="mockup-row">
-      <!-- PCブラウザ -->
       <div class="browser-frame">
         <div class="browser-topbar">
           <div class="browser-dots">
@@ -340,13 +296,11 @@
               <div class="dummy-block dummy-section-alt"></div>
               <div class="dummy-block dummy-narrow"></div>
               <div class="dummy-block dummy-wide"></div>
-              <div class="dummy-block dummy-section"></div>
               <div class="dummy-block dummy-footer"></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- スマホ -->
       <div class="phone-frame">
         <div class="phone-notch"></div>
         <div class="phone-viewport">
@@ -363,7 +317,7 @@
         </div>
       </div>
     </div>
-  </div><!-- /lp-mockup-section 2 -->
+  </div>
 
   <!-- 本文 -->
   <div class="article-layout">
@@ -371,14 +325,15 @@
     <article class="article-body">
 
       <p class="article-lead">
-        受験生応援・販売促進キャンペーンのLPページの制作を担当。メインビジュアルをもとに、ワイヤーフレームからデザインまで担当しました。
+        美容情報サービス「@cosme」のサブスクリプションボックス「BLOOMBOX」の販売促進LP・バナー・コーディングを担当。Summer・Winter 2シーズン分を一貫して制作しました。
       </p>
 
       <div class="article-img">
         <img src="img/works_cosme_img2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="article-img-ph" style="display:none;"></div>
-        <p class="article-img-caption"></p>
+        <p class="article-img-caption">PC・SP共通デザイン（左：SummerBox / 右：WinterBox）</p>
       </div>
+
       <div class="article-img">
         <img src="img/works_cosme_img3.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="article-img-ph" style="display:none;"></div>
@@ -386,33 +341,38 @@
       </div>
 
       <p class="article-text">
-        受験生とその親御様を対象とした、メガネの販売促進キャンペーンです。「受験生を応援する」というブランドメッセージを前面に出しながら、商品購入・サービス認知への導線を設計しました。
-      </p>    
-
-      <div class="article-section-title">SNS用バナーデザイン</div>
-
-      <p class="article-text">
-        LPと連動したSNS広告バナーも制作。クリック率を意識したビジュアル設計で、ターゲットへの訴求力を高めています。
+        BLOOMBOXは@cosmeが厳選したコスメを詰め合わせた数量限定ボックス。「限定感」「豪華さ」「発売日のわくわく感」を伝えることを軸に、ビジュアルと導線を設計しました。
       </p>
-     <div class="banner-stack">
-  <img src="img/2023summerbox_bn1.png" alt="">
-  <img src="img/2022winterbox_bn1.png" alt="">
-</div>
+      <p class="article-text">
+        SummerBoxはさわやかなグリーン×ホワイトで夏らしい清涼感を、WinterBoxは淡いブルー×シルバーで冬の特別感を表現。シーズンごとにトーンを変えながら、ブランドの統一感も維持しました。
+      </p>
+
+      <!-- バナー -->
+      <div class="article-section-title">販促バナーデザイン</div>
+      <p class="article-text">
+        LP発売日に合わせてSNS・サイト内で展開したバナーです。「数量限定」「発売日」を目立たせながら、クリック意欲を高めるビジュアル設計を意識しました。
+      </p>
+
+      <div class="banner-stack">
+        <img src="img/2023summerbox_bn1.png" alt="SummerBox バナー">
+        <img src="img/2022winterbox_bn1.png" alt="WinterBox バナー">
+      </div>
+
       <div class="process-block">
         <div class="process-block-title">制作について・工夫した点</div>
         <p class="process-block-text">
-          メインビジュアルのみを先方からいただき、リリースまで約2週間というタイトスケジュールでの制作でした。広告代理店という直受けの強みを活かし、クライアントの細かな要望にも迅速に対応。ブランドの世界観を損なわず、かつターゲットに響くデザインのバランスを追求しました。
+          LP制作からHTMLコーディングまで一貫して担当しました。数量限定ゆえに「早く申し込みたい」という購買意欲を高めるため、ファーストビューに発売日・限定数の訴求を集中させる構成を採用。スクロールするにつれて商品詳細・ブランドストーリーへ誘導する流れを意識しました。バナーはLPのビジュアルトーンを踏襲しながら、短時間で情報が伝わるシンプルな設計にまとめています。
         </p>
       </div>
 
       <div class="article-nav">
-        <a href="#" class="article-nav-item">
+        <a href="works-detail-v2.html" class="article-nav-item">
           <div class="article-nav-label">← Prev</div>
-          <div class="article-nav-title">【spic】リポC バナー・DTP制作</div>
+          <div class="article-nav-title">【JINS】受験生応援キャンペーンLP</div>
         </a>
-        <a href="works-tokyo_komekopan.html" class="article-nav-item next">
+        <a href="itoyokado_2024_china.html" class="article-nav-item next">
           <div class="article-nav-label">Next →</div>
-          <div class="article-nav-title">【東京都】米粉パンキャンペーンLP</div>
+          <div class="article-nav-title">【ネットスーパー】キャンペーンLP</div>
         </a>
       </div>
 
@@ -429,11 +389,11 @@
           </div>
           <div class="sidebar-info-item">
             <div class="sidebar-info-label">Year</div>
-            <div class="sidebar-info-value">2023</div>
+            <div class="sidebar-info-value">2022–2023</div>
           </div>
           <div class="sidebar-info-item">
             <div class="sidebar-info-label">Period</div>
-            <div class="sidebar-info-value">ワイヤー 1.5日/デザイン 3日/Baner 1日/Coding 1.5日</div>
+            <div class="sidebar-info-value">ワイヤー 1.5日 / デザイン 3日 / Banner 1日 / Coding 1.5日</div>
           </div>
           <div class="sidebar-info-item">
             <div class="sidebar-info-label">Role</div>
@@ -445,7 +405,7 @@
           </div>
           <div class="sidebar-info-item">
             <div class="sidebar-info-label">Goal</div>
-            <div class="sidebar-info-value">認知拡大・新規集客</div>
+            <div class="sidebar-info-value">数量限定BOX販売促進・認知拡大</div>
           </div>
         </div>
       </div>
@@ -454,7 +414,7 @@
         <div class="sidebar-title">Tools</div>
         <div class="sidebar-tags">
           <span class="sidebar-tag">Photoshop</span>
-           <span class="sidebar-tag">Dreamweaver</span>
+          <span class="sidebar-tag">Dreamweaver</span>
         </div>
       </div>
 
