@@ -69,6 +69,7 @@
     footer { background: var(--brown); padding: 2.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
     .footer-logo { font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; }
     .footer-copy { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.25); }
+
     .lp-mockup-section { background: var(--sage-mist); padding: 5rem; text-align: center; }
     .lp-mockup-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage); display: inline-flex; align-items: center; gap: 0.8rem; margin-bottom: 3rem; }
     .lp-mockup-label::before, .lp-mockup-label::after { content: ''; width: 40px; height: 1px; background: var(--sage-pale); }
@@ -89,55 +90,94 @@
     .browser-viewport::after { bottom: 0; background: linear-gradient(to top, var(--white), transparent); }
     .mockup-row { display: flex; justify-content: center; align-items: flex-start; gap: 3rem; max-width: 900px; margin: 0 auto; }
     .mockup-row .browser-frame { flex: 1; }
-    .storyboard-stack { display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0; }
-    .storyboard-stack img { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--sage-pale); }
-    .banner-showcase { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
-    .banner-showcase img { width: 100%; height: auto; display: block; border-radius: 4px; }
-    @media (max-width: 768px) { nav { padding: 1rem 1.5rem; } .nav-links { display: none; } .breadcrumb { padding: 1rem 1.5rem; } .page-hero { padding: 3rem 1.5rem 3rem; } .page-hero-inner { grid-template-columns: 1fr; gap: 2rem; } .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; } .article-sidebar { order: -1; } .img-grid-2 { grid-template-columns: 1fr; } .article-nav { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 1rem; text-align: center; } .browser-frame { display: none; } }
+
+    /* バナーグリッド */
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+    .img-grid-item { aspect-ratio: 1; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sage-mist) 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .img-grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* 印刷物グリッド（パネル縦3列） */
+    .print-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+    .print-item { display: flex; flex-direction: column; gap: 0.6rem; }
+    .print-item img { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--sage-pale); box-shadow: 0 4px 16px rgba(74,61,46,0.08); }
+    .print-caption { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); letter-spacing: 0.05em; text-align: center; padding: 0.3rem 0; border-top: 1px solid var(--sage-pale); }
+
+    /* チラシ・横パネル（2列） */
+    .print-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; } .nav-links { display: none; } .breadcrumb { padding: 1rem 1.5rem; }
+      .page-hero { padding: 3rem 1.5rem 3rem; } .page-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; } .article-sidebar { order: -1; }
+      .img-grid-2, .print-grid-3, .print-grid-2 { grid-template-columns: 1fr; }
+      .article-nav { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .browser-frame { display: none; }
+    }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="nav-logo">Rika Yamada</div>
     <ul class="nav-links">
-      <li><a href="index.html#works">Works</a></li><li><a href="index.html#skill">Skill</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#works">Works</a></li>
+      <li><a href="index.html#skill">Skill</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
+
   <div class="breadcrumb">
-    <a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="index.html#works">Works</a><span class="breadcrumb-sep">›</span><span>【LP/Banner/DTP】採用サイトLP+印刷物</span>
+    <a href="index.html">Home</a><span class="breadcrumb-sep">›</span>
+    <a href="index.html#works">Works</a><span class="breadcrumb-sep">›</span>
+    <span>【LP/Banner/DTP】採用サイトLP・展示会印刷物</span>
   </div>
+
   <div class="page-hero">
     <div class="page-hero-inner">
       <div>
         <div class="page-hero-label">LP / Banner / DTP</div>
-        <h1 class="page-hero-title">採用サイトLP・展示会印刷物など<br><em></em></h1>
+        <h1 class="page-hero-title">採用サイトLP<br><em>展示会印刷物</em></h1>
         <div class="page-hero-meta">
-          <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">株式会社SDテック</div></div>
-          <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">2024</div></div>
+          <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">エスディーテック株式会社</div></div>
+          <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">2023</div></div>
           <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">Design / Banner / DTP</div></div>
         </div>
         <a href="index.html#works" class="back-btn">← Works 一覧へ</a>
       </div>
       <div class="page-hero-visual">
-        <img src="img/works__sdt_mv.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <img src="img/works_sdt__mv.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="page-hero-visual-ph" style="display:none;"></div>
       </div>
     </div>
   </div>
-  <div class="hero-wave"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,25 C360,50 1080,0 1440,25 L1440,50 L0,50 Z" fill="#faf8f3"/></svg></div>
 
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,25 C360,50 1080,0 1440,25 L1440,50 L0,50 Z" fill="#faf8f3"/>
+    </svg>
+  </div>
+
+  <!-- 採用サイト スクロールビュー -->
   <div class="lp-mockup-section">
-    <div class="lp-mockup-label">LP Scroll Preview</div>
+    <div class="lp-mockup-label">Careers Site — Scroll Preview</div>
     <div class="mockup-row">
       <div class="browser-frame">
-        <div class="browser-topbar"><div class="browser-dots"><div class="browser-dot red"></div><div class="browser-dot yellow"></div><div class="browser-dot green"></div></div><div class="browser-url"></div></div>
+        <div class="browser-topbar">
+          <div class="browser-dots"><div class="browser-dot red"></div><div class="browser-dot yellow"></div><div class="browser-dot green"></div></div>
+          <div class="browser-url"></div>
+        </div>
         <div class="browser-viewport">
           <img src="img/sdt_careers_index.png" alt="" class="lp-scroll-img">
           <div class="lp-scroll-placeholder"><div class="lp-scroll-placeholder-inner"><div class="dummy-block dummy-hero"></div><div class="dummy-block dummy-section"></div><div class="dummy-block dummy-section-alt"></div><div class="dummy-block dummy-narrow"></div><div class="dummy-block dummy-wide"></div><div class="dummy-block dummy-footer"></div></div></div>
         </div>
       </div>
       <div class="browser-frame">
-        <div class="browser-topbar"><div class="browser-dots"><div class="browser-dot red"></div><div class="browser-dot yellow"></div><div class="browser-dot green"></div></div><div class="browser-url"></div></div>
+        <div class="browser-topbar">
+          <div class="browser-dots"><div class="browser-dot red"></div><div class="browser-dot yellow"></div><div class="browser-dot green"></div></div>
+          <div class="browser-url"></div>
+        </div>
         <div class="browser-viewport">
           <img src="img/sdt_careers_message.png" alt="" class="lp-scroll-img">
           <div class="lp-scroll-placeholder"><div class="lp-scroll-placeholder-inner"><div class="dummy-block dummy-hero"></div><div class="dummy-block dummy-section"></div><div class="dummy-block dummy-section-alt"></div><div class="dummy-block dummy-narrow"></div><div class="dummy-block dummy-wide"></div><div class="dummy-block dummy-footer"></div></div></div>
@@ -146,70 +186,123 @@
     </div>
   </div>
 
+  <!-- 本文 -->
   <div class="article-layout">
+
     <article class="article-body">
-      <p class="article-lead">ビーズソファ・カウチソファのEC商品ページ・LPの制作を担当。商品の魅力を最大限に伝えるため、ビジュアル設計から動画の絵コンテまで一貫して手がけました。</p>
+
+      <p class="article-lead">
+        「人間中心設計（HCD）」を専門とするソフトウェア開発会社エスディーテック株式会社の採用サイトLP・SNS広告バナー・展示会用パネル・チラシのデザインを担当しました。
+      </p>
+
       <div class="article-img">
         <img src="img/works_sdt_img2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="article-img-ph" style="display:none;"></div>
         <p class="article-img-caption"></p>
       </div>
-      <p class="article-text">ビーズソファの「やわらかさ」「2way使用」という商品特性をビジュアルで伝えるため、シーン別の使用イメージを重視したデザインを構成。ECページ・LP・SNS広告バナーまで一貫したクリエイティブで制作しました。</p>
-      <p class="article-text">ビーズタイプ・カウチタイプそれぞれのLPをYahooショッピング・楽天向けに最適化し、各プラットフォームのUI・ガイドラインに沿いながら、CVR向上を意識した導線設計を行いました。</p>
 
-      <!-- バナー -->
+      <p class="article-text">
+        同社は「デザイン思考によるGood UXの実現」を掲げ、デザイナーとエンジニアが一体となって製品・サービス開発に取り組む会社です。採用サイトでは企業理念・職場の雰囲気・求める人物像を伝えるLP構成をデザイン。求人媒体への依存から自社採用への移行を目的としたプロジェクトでした。
+      </p>
+      <p class="article-text">
+        BtoB向けの専門性の高い会社のため、デザインは信頼感・誠実さを軸に、スタイリッシュで洗練されたトーンに統一。カラーはブランドのティールグリーンを軸に構成しました。
+      </p>
+
+      <!-- SNSバナー -->
       <div class="article-section-title">SNS用バナーデザイン</div>
-      LPと連動したSNS広告バナーも制作。ABテストを実施。</br>(男女でクリックが分かれ、男性=顔写真があるもの、女性=感性をイメージするものがよりクリック率が高い結果に分かれました）
+      <p class="article-text">
+        採用LPと連動したSNS広告バナーも制作。ABテストを実施した結果、男性は顔写真があるクリエイティブ、女性は感性・世界観を訴求するクリエイティブの方がクリック率が高い傾向が見られ、ターゲット別に出し分ける運用につなげました。
       </p>
 
       <div class="img-grid-2">
         <div class="img-grid-item">
-          <img src="img/works_sdt_bn1.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <span style="display:none;">バナー</span>
+          <img src="img/works_sdt_bn1.jpg" alt="採用バナー A" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <span style="display:none;">バナーA</span>
         </div>
         <div class="img-grid-item">
-          <img src="img/works_sdt_bn2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <span style="display:none;">バナー</span>
+          <img src="img/works_sdt_bn2.jpg" alt="採用バナー B" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <span style="display:none;">バナーB</span>
+        </div>
+      </div>
+
+      <!-- 印刷物・展示会パネル -->
+      <div class="article-section-title">印刷物 / 展示会パネル制作</div>
+      <p class="article-text">
+        展示会・商談で使用するパネルおよび会社紹介チラシのDTPデザインも担当。「デザイン思考によるGood UXの実現」「XR・AIソリューション」「デザインエンジニアリング」の3テーマを縦型パネルで展開しました。
+      </p>
+
+      <!-- 縦パネル3枚 -->
+      <div class="print-grid-3">
+        <div class="print-item">
+          <img src="img/sdt_panel1.png" alt="展示会パネル デザインエンジニアリング">
+          <p class="print-caption">展示会パネル — デザインエンジニアリング</p>
+        </div>
+        <div class="print-item">
+          <img src="img/sdt_panel2.png" alt="展示会パネル デザイン思考・Good UX">
+          <p class="print-caption">展示会パネル — デザイン思考による Good UX の実現</p>
+        </div>
+        <div class="print-item">
+          <img src="img/sdt_panel3.png" alt="展示会パネル XR・AIソリューション">
+          <p class="print-caption">展示会パネル — XR・AI ソリューション</p>
+        </div>
+      </div>
+
+      <!-- チラシ・横連結パネル -->
+      <div class="print-grid-2">
+        <div class="print-item">
+          <img src="img/sdt_flyer1.png" alt="会社紹介チラシ 両面">
+          <p class="print-caption">会社紹介チラシ — 両面折りパンフレット</p>
+        </div>
+        <div class="print-item">
+          <img src="img/sdt_flyer2.png" alt="展示会用横型パネル">
+          <p class="print-caption">展示会用 横連結パネル（全体レイアウト）</p>
         </div>
       </div>
 
       <div class="process-block">
         <div class="process-block-title">制作について・工夫した点</div>
-        <p class="process-block-text">「やわらかさ」「使いやすさ」という抽象的な商品の良さを、動画と静止画の両軸で伝えることを意識しました。動画は絵コンテから一貫して担当し、「自分時間のリラックス」「リモートワーク」「2人でくつろぐ」など複数の使用シーンを丁寧に描写。LPとの世界観の統一にも気を配り、ページ全体でブランドイメージを一貫させました。</p>
+        <p class="process-block-text">
+          専門性の高いBtoB企業のクリエイティブのため、「難しい内容を分かりやすく・かっこよく見せる」ことを意識しました。採用サイトはWebマーケティングのノウハウを活かし、ファーストビューで会社の強みと雰囲気を伝え、スクロールに合わせて詳細へ誘導する設計に。展示会パネルはA0サイズで遠くから視認できるタイポグラフィと、内容の優先順位を明確にしたレイアウトを追求しました。すべてのデザインを同一のトーン&マナーで統一し、ブランドの一貫性を保ちました。
+        </p>
       </div>
 
       <div class="article-nav">
-        <a href="https://uru041.github.io/portfolio/works_sofa.html" class="article-nav-item">
+        <a href="works-tokyo_komekopan.html" class="article-nav-item">
           <div class="article-nav-label">← Prev</div>
-          <div class="article-nav-title">【イラストレーター活動】My Webpage</div>
+          <div class="article-nav-title">【東京都】米粉パンキャンペーンLP</div>
         </a>
         <a href="index.html#works" class="article-nav-item next">
           <div class="article-nav-label">Back →</div>
           <div class="article-nav-title">Works 一覧へ戻る</div>
         </a>
       </div>
+
     </article>
 
     <aside class="article-sidebar">
       <div class="sidebar-section">
         <div class="sidebar-title">Project Info</div>
         <div class="sidebar-info-list">
-          <div class="sidebar-info-item"><div class="sidebar-info-label">Client</div><div class="sidebar-info-value">株式会社SDテック</div></div>
-          <div class="sidebar-info-item"><div class="sidebar-info-label">Year</div><div class="sidebar-info-value">2024</div></div>
-          <div class="sidebar-info-item"><div class="sidebar-info-label">Period</div><div class="sidebar-info-value">LP 4日 / Banner 2日</div></div>
-          <div class="sidebar-info-item"><div class="sidebar-info-label">Role</div><div class="sidebar-info-value">デザイン</div></div>
-          <div class="sidebar-info-item"><div class="sidebar-info-label">Target</div><div class="sidebar-info-value">人間中心設計デザインに興味のある新卒インターン・中途人材</div></div>
-          <div class="sidebar-info-item"><div class="sidebar-info-label">Goal</div><div class="sidebar-info-value">求人媒体の広告費削減</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Client</div><div class="sidebar-info-value">エスディーテック株式会社</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Year</div><div class="sidebar-info-value">2023</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Period</div><div class="sidebar-info-value">LP 4日 / Banner 2日 / DTP 4日</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Role</div><div class="sidebar-info-value">デザイン / DTP</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Target</div><div class="sidebar-info-value">人間中心設計・UXデザインに興味のある新卒・中途人材</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Goal</div><div class="sidebar-info-value">自社採用の強化・求人媒体費用の削減</div></div>
         </div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">Tools</div>
-        <div class="sidebar-tags"><span class="sidebar-tag">Photoshop</span><span class="sidebar-tag">Premiere Pro</span></div>
+        <div class="sidebar-tags">
+          <span class="sidebar-tag">Photoshop</span>
+          <span class="sidebar-tag">Illustrator</span>
+          <span class="sidebar-tag">XD</span>
+        </div>
       </div>
       <div class="sidebar-section">
         <div class="sidebar-title">URL</div>
         <div class="sidebar-url">
-          <a href="" target="_blank" rel="noopener">掲載終了</a>
+          <a href="" rel="noopener">掲載終了</a>
         </div>
       </div>
       <a href="index.html#works" class="back-btn" style="display:inline-flex;">← Works 一覧へ</a>
@@ -220,5 +313,6 @@
     <div class="footer-logo">Rika Yamada</div>
     <p class="footer-copy">© Rika Yamada. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
