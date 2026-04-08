@@ -9,40 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --sage: #7a9e87;
-      --sage-light: #a8c4b0;
-      --sage-pale: #d4e5d8;
-      --sage-mist: #eef4f0;
-      --yellow: #e8d89a;
-      --yellow-pale: #f5efc8;
-      --yellow-mist: #faf7e8;
-      --cream: #faf8f3;
-      --brown: #4a3d2e;
-      --brown-mid: #7a6555;
-      --brown-light: #b8a090;
-      --white: #ffffff;
-      --text: #3a3028;
-    }
-
+    :root { --sage: #7a9e87; --sage-light: #a8c4b0; --sage-pale: #d4e5d8; --sage-mist: #eef4f0; --yellow: #e8d89a; --yellow-pale: #f5efc8; --yellow-mist: #faf7e8; --cream: #faf8f3; --brown: #4a3d2e; --brown-mid: #7a6555; --brown-light: #b8a090; --white: #ffffff; --text: #3a3028; }
     html { scroll-behavior: smooth; }
     body { background: var(--cream); color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 300; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
-
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(250,248,243,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(168,196,176,0.3); }
     .nav-logo { font-style: italic; font-size: 1.1rem; letter-spacing: 0.2em; color: var(--brown); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brown-mid); position: relative; transition: color 0.3s; }
     .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--sage); transition: width 0.3s; }
-    .nav-links a:hover { color: var(--sage); }
-    .nav-links a:hover::after { width: 100%; }
-
+    .nav-links a:hover { color: var(--sage); } .nav-links a:hover::after { width: 100%; }
     .breadcrumb { margin-top: 72px; padding: 1rem 5rem; background: var(--white); border-bottom: 1px solid var(--sage-pale); display: flex; align-items: center; gap: 0.6rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); }
-    .breadcrumb a { color: var(--sage); transition: opacity 0.2s; }
-    .breadcrumb a:hover { opacity: 0.7; }
-    .breadcrumb-sep { opacity: 0.4; }
-
+    .breadcrumb a { color: var(--sage); transition: opacity 0.2s; } .breadcrumb a:hover { opacity: 0.7; } .breadcrumb-sep { opacity: 0.4; }
     .page-hero { background: var(--sage-mist); padding: 4rem 5rem 3rem; position: relative; overflow: hidden; }
     .page-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .page-hero-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
@@ -55,11 +33,9 @@
     .page-hero-visual { aspect-ratio: 4/3; background: var(--sage-pale); overflow: hidden; align-self: end; }
     .page-hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .page-hero-visual-ph { width: 100%; height: 100%; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sage-mist) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 1rem; color: var(--sage-light); }
-
     .hero-wave { overflow: hidden; line-height: 0; margin-top: -1px; }
     .hero-wave svg { display: block; width: 100%; }
-
-    .article-layout { display: grid; grid-template-columns: 1fr 280px; gap: 4rem; padding: 5rem; max-width: 1200px; margin: 0 auto; }
+    .article-layout { display: grid; grid-template-columns: 1fr 280px; gap: 4rem; padding: 5rem 5rem; max-width: 1200px; margin: 0 auto; }
     .article-lead { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 300; line-height: 1.8; color: var(--brown); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--sage-pale); }
     .article-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.82rem; line-height: 2.3; color: var(--brown-mid); margin-bottom: 1.5rem; }
     .article-img { margin: 2.5rem 0; border-radius: 4px; overflow: hidden; }
@@ -67,28 +43,19 @@
     .article-img-ph { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--yellow-pale) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; color: var(--sage-light); font-size: 0.9rem; }
     .article-img-caption { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); margin-top: 0.5rem; letter-spacing: 0.05em; }
     .article-section-title { font-size: 1.4rem; font-style: italic; color: var(--brown); margin: 3rem 0 1rem; padding-left: 1rem; border-left: 2px solid var(--sage); }
-
     .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
-    .img-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
     .img-grid-item { aspect-ratio: 1; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sage-mist) 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-style: italic; color: var(--sage-light); font-size: 0.8rem; overflow: hidden; }
     .img-grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-    .banner-stack { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
-    .banner-stack img { width: 100%; height: auto; display: block; border-radius: 4px; }
-
     .process-block { background: var(--sage-mist); border-radius: 8px; padding: 2rem; margin: 2.5rem 0; border-left: 3px solid var(--sage); }
     .process-block-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
     .process-block-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem; line-height: 2.2; color: var(--brown-mid); }
-
     .article-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--sage-pale); }
     .article-nav-item { padding: 1.5rem; border: 1px solid var(--sage-pale); border-radius: 4px; transition: all 0.3s; cursor: pointer; }
     .article-nav-item:hover { border-color: var(--sage); background: var(--sage-mist); }
     .article-nav-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
     .article-nav-title { font-size: 0.95rem; color: var(--brown); line-height: 1.4; }
     .article-nav-item.next { text-align: right; }
-
-    .article-sidebar { }
-    .sidebar-section { margin-bottom: 2.5rem; }
+    .article-sidebar { } .sidebar-section { margin-bottom: 2.5rem; }
     .sidebar-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--sage-pale); }
     .sidebar-info-list { display: flex; flex-direction: column; gap: 1rem; }
     .sidebar-info-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.15em; color: var(--brown-light); margin-bottom: 0.2rem; }
@@ -97,338 +64,169 @@
     .sidebar-tag { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.05em; color: var(--sage); border: 1px solid var(--sage-pale); padding: 0.3rem 0.8rem; border-radius: 20px; background: var(--sage-mist); }
     .sidebar-url a { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; color: var(--sage); word-break: break-all; line-height: 1.8; transition: opacity 0.2s; }
     .sidebar-url a:hover { opacity: 0.7; }
-
     .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; color: var(--brown-mid); border: 1px solid var(--sage-pale); padding: 0.65rem 1.5rem; border-radius: 20px; transition: all 0.3s; margin-top: 1rem; }
     .back-btn:hover { border-color: var(--sage); color: var(--sage); background: var(--sage-mist); }
-
     footer { background: var(--brown); padding: 2.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
     .footer-logo { font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; }
     .footer-copy { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.25); }
-
     .lp-mockup-section { background: var(--sage-mist); padding: 5rem; text-align: center; }
-    .lp-mockup-section + .lp-mockup-section { padding-top: 0; }
     .lp-mockup-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage); display: inline-flex; align-items: center; gap: 0.8rem; margin-bottom: 3rem; }
     .lp-mockup-label::before, .lp-mockup-label::after { content: ''; width: 40px; height: 1px; background: var(--sage-pale); }
-
     .browser-frame { max-width: 820px; margin: 0 auto; background: #e8e5de; border-radius: 12px 12px 8px 8px; box-shadow: 0 30px 80px rgba(74,61,46,0.15), 0 8px 20px rgba(74,61,46,0.08); overflow: hidden; }
     .browser-topbar { background: #d4d0c8; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .browser-dots { display: flex; gap: 0.4rem; }
-    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .browser-dot.red { background: #ff6058; }
-    .browser-dot.yellow { background: #ffbd2e; }
-    .browser-dot.green { background: #28c840; }
+    .browser-dots { display: flex; gap: 0.4rem; } .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dot.red { background: #ff6058; } .browser-dot.yellow { background: #ffbd2e; } .browser-dot.green { background: #28c840; }
     .browser-url { flex: 1; background: rgba(255,255,255,0.6); border-radius: 4px; padding: 0.3rem 0.8rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: rgba(74,61,46,0.45); text-align: left; margin: 0 0.5rem; }
     .browser-viewport { height: 460px; overflow: hidden; position: relative; background: var(--white); }
     .lp-scroll-img { width: 100%; display: block; animation: lpScroll 25s ease-in-out infinite; transform-origin: top center; }
     .lp-scroll-placeholder { width: 100%; animation: lpScroll 25s ease-in-out infinite; }
     .lp-scroll-placeholder-inner { width: 100%; background: linear-gradient(180deg, var(--sage-mist) 0%, var(--yellow-mist) 20%, var(--cream) 40%, var(--sage-mist) 60%, var(--yellow-mist) 80%, var(--cream) 100%); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 3rem 2rem; gap: 2rem; }
     .dummy-block { width: 100%; background: rgba(122,158,135,0.15); border-radius: 4px; }
-    .dummy-hero { height: 260px; background: linear-gradient(135deg, var(--sage-pale), var(--yellow-pale)); }
-    .dummy-section { height: 180px; }
-    .dummy-section-alt { height: 200px; background: rgba(232,216,154,0.2); }
-    .dummy-narrow { height: 140px; width: 70%; }
-    .dummy-wide { height: 220px; }
-    .dummy-footer { height: 100px; background: rgba(74,61,46,0.15); }
-
-    @keyframes lpScroll {
-      0%   { transform: translateY(0); }
-      10%  { transform: translateY(0); }
-      45%  { transform: translateY(-55%); }
-      55%  { transform: translateY(-55%); }
-      90%  { transform: translateY(0); }
-      100% { transform: translateY(0); }
-    }
-
+    .dummy-hero { height: 260px; background: linear-gradient(135deg, var(--sage-pale), var(--yellow-pale)); } .dummy-section { height: 180px; } .dummy-section-alt { height: 200px; background: rgba(232,216,154,0.2); } .dummy-narrow { height: 140px; width: 70%; } .dummy-wide { height: 220px; } .dummy-footer { height: 100px; background: rgba(74,61,46,0.15); }
+    @keyframes lpScroll { 0% { transform: translateY(0); } 10% { transform: translateY(0); } 45% { transform: translateY(-55%); } 55% { transform: translateY(-55%); } 90% { transform: translateY(0); } 100% { transform: translateY(0); } }
     .browser-viewport::before, .browser-viewport::after { content: ''; position: absolute; left: 0; right: 0; height: 60px; z-index: 2; pointer-events: none; }
     .browser-viewport::before { top: 0; background: linear-gradient(to bottom, var(--white), transparent); }
     .browser-viewport::after { bottom: 0; background: linear-gradient(to top, var(--white), transparent); }
-
     .mockup-row { display: flex; justify-content: center; align-items: flex-start; gap: 3rem; max-width: 900px; margin: 0 auto; }
     .mockup-row .browser-frame { flex: 1; }
-
-    .phone-frame { width: 180px; flex-shrink: 0; background: #e8e5de; border-radius: 28px; box-shadow: 0 30px 80px rgba(74,61,46,0.15), 0 8px 20px rgba(74,61,46,0.08); overflow: hidden; padding: 12px 8px; position: relative; margin-top: 2rem; }
-    .phone-notch { width: 60px; height: 16px; background: #d4d0c8; border-radius: 8px; margin: 0 auto 8px; }
-    .phone-viewport { height: 320px; overflow: hidden; border-radius: 4px; position: relative; background: var(--white); }
-    .phone-scroll-img { width: 100%; display: block; animation: lpScroll 25s ease-in-out infinite; animation-delay: -2s; }
-    .phone-scroll-placeholder { width: 100%; animation: lpScroll 25s ease-in-out infinite; animation-delay: -2s; }
-    .phone-viewport::before, .phone-viewport::after { content: ''; position: absolute; left: 0; right: 0; height: 40px; z-index: 2; pointer-events: none; }
-    .phone-viewport::before { top: 0; background: linear-gradient(to bottom, var(--white), transparent); }
-    .phone-viewport::after { bottom: 0; background: linear-gradient(to top, var(--white), transparent); }
-
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .breadcrumb { padding: 1rem 1.5rem; }
-      .page-hero { padding: 3rem 1.5rem 3rem; }
-      .page-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
-      .article-sidebar { order: -1; }
-      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
-      .article-nav { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; }
-      .browser-frame { display: none; }
-      .lp-mockup-section { padding: 3rem 1.5rem; }
-      .lp-mockup-section + .lp-mockup-section { padding-top: 0; }
-    }
+    .storyboard-stack { display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0; }
+    .storyboard-stack img { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--sage-pale); }
+    .banner-showcase { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+    .banner-showcase img { width: 100%; height: auto; display: block; border-radius: 4px; }
+    @media (max-width: 768px) { nav { padding: 1rem 1.5rem; } .nav-links { display: none; } .breadcrumb { padding: 1rem 1.5rem; } .page-hero { padding: 3rem 1.5rem 3rem; } .page-hero-inner { grid-template-columns: 1fr; gap: 2rem; } .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; } .article-sidebar { order: -1; } .img-grid-2 { grid-template-columns: 1fr; } .article-nav { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 1rem; text-align: center; } .browser-frame { display: none; } }
   </style>
 </head>
 <body>
-
   <nav>
     <div class="nav-logo">Rika Yamada</div>
     <ul class="nav-links">
-      <li><a href="index.html#works">Works</a></li>
-      <li><a href="index.html#skill">Skill</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#works">Works</a></li><li><a href="index.html#skill">Skill</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
-
   <div class="breadcrumb">
-    <a href="index.html">Home</a>
-    <span class="breadcrumb-sep">›</span>
-    <a href="index.html#works">Works</a>
-    <span class="breadcrumb-sep">›</span>
-    <span>【LP/Banner/Coding】@cosme BLOOMBOX キャンペーンLP</span>
+    <a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="index.html#works">Works</a><span class="breadcrumb-sep">›</span><span>【LP/Banner/Movie】ビーズソファEC/LP</span>
   </div>
-
   <div class="page-hero">
     <div class="page-hero-inner">
       <div>
-        <div class="page-hero-label">LP / Banner / Coding</div>
-        <h1 class="page-hero-title">
-          @cosme BLOOMBOX<br>
-          <em>Summer &amp; Winter</em>
-        </h1>
+        <div class="page-hero-label">LP / Banner / Movie</div>
+        <h1 class="page-hero-title">ビーズソファEC/LP<br><em>Yahoo/楽天</em></h1>
         <div class="page-hero-meta">
-          <div class="meta-item">
-            <div class="meta-label">Client</div>
-            <div class="meta-value">株式会社アイスタイル</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Year</div>
-            <div class="meta-value">2023</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Role</div>
-            <div class="meta-value">Design / Banner / Coding</div>
-          </div>
+          <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">株式会社ドウシシャ</div></div>
+          <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">2022</div></div>
+          <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">Design / Banner / Movie</div></div>
         </div>
         <a href="index.html#works" class="back-btn">← Works 一覧へ</a>
       </div>
       <div class="page-hero-visual">
-        <img src="img/works__cosme_mv.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <img src="img/works_sofa_mv.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="page-hero-visual-ph" style="display:none;"></div>
       </div>
     </div>
   </div>
+  <div class="hero-wave"><svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,25 C360,50 1080,0 1440,25 L1440,50 L0,50 Z" fill="#faf8f3"/></svg></div>
 
-  <div class="hero-wave">
-    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0,25 C360,50 1080,0 1440,25 L1440,50 L0,50 Z" fill="#faf8f3"/>
-    </svg>
-  </div>
-
-  <!-- スクロールビュー 1セット目：SummerBox -->
   <div class="lp-mockup-section">
-    <div class="lp-mockup-label">Summer Box — LP Scroll Preview</div>
+    <div class="lp-mockup-label">LP Scroll Preview</div>
     <div class="mockup-row">
       <div class="browser-frame">
-        <div class="browser-topbar">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
-          </div>
-          <div class="browser-url"></div>
-        </div>
+        <div class="browser-topbar"><div class="browser-dots"><div class="browser-dot red"></div><div class="browser-dot yellow"></div><div class="browser-dot green"></div></div><div class="browser-url"></div></div>
         <div class="browser-viewport">
-          <img src="img/works_cosme2.jpg" alt="" class="lp-scroll-img">
-          <div class="lp-scroll-placeholder">
-            <div class="lp-scroll-placeholder-inner">
-              <div class="dummy-block dummy-hero"></div>
-              <div class="dummy-block dummy-section"></div>
-              <div class="dummy-block dummy-section-alt"></div>
-              <div class="dummy-block dummy-narrow"></div>
-              <div class="dummy-block dummy-wide"></div>
-              <div class="dummy-block dummy-footer"></div>
-            </div>
-          </div>
+          <img src="img/luminous_bsofa.png" alt="" class="lp-scroll-img">
+          <div class="lp-scroll-placeholder"><div class="lp-scroll-placeholder-inner"><div class="dummy-block dummy-hero"></div><div class="dummy-block dummy-section"></div><div class="dummy-block dummy-section-alt"></div><div class="dummy-block dummy-narrow"></div><div class="dummy-block dummy-wide"></div><div class="dummy-block dummy-footer"></div></div></div>
         </div>
       </div>
-      <div class="phone-frame">
-        <div class="phone-notch"></div>
-        <div class="phone-viewport">
-          <img src="img/works_cosme1.jpg" alt="" class="phone-scroll-img">
-          <div class="phone-scroll-placeholder">
-            <div class="lp-scroll-placeholder-inner" style="padding:1rem;">
-              <div class="dummy-block dummy-hero" style="height:160px;"></div>
-              <div class="dummy-block dummy-section" style="height:120px;"></div>
-              <div class="dummy-block dummy-section-alt" style="height:140px;"></div>
-              <div class="dummy-block dummy-wide" style="height:160px;"></div>
-              <div class="dummy-block dummy-footer" style="height:80px;"></div>
-            </div>
-          </div>
+      <div class="browser-frame">
+        <div class="browser-topbar"><div class="browser-dots"><div class="browser-dot red"></div><div class="browser-dot yellow"></div><div class="browser-dot green"></div></div><div class="browser-url"></div></div>
+        <div class="browser-viewport">
+          <img src="img/luminous_sofa.png" alt="" class="lp-scroll-img">
+          <div class="lp-scroll-placeholder"><div class="lp-scroll-placeholder-inner"><div class="dummy-block dummy-hero"></div><div class="dummy-block dummy-section"></div><div class="dummy-block dummy-section-alt"></div><div class="dummy-block dummy-narrow"></div><div class="dummy-block dummy-wide"></div><div class="dummy-block dummy-footer"></div></div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- スクロールビュー 2セット目：WinterBox -->
-  <div class="lp-mockup-section">
-    <div class="lp-mockup-label">Winter Box — LP Scroll Preview</div>
-    <div class="mockup-row">
-      <div class="browser-frame">
-        <div class="browser-topbar">
-          <div class="browser-dots">
-            <div class="browser-dot red"></div>
-            <div class="browser-dot yellow"></div>
-            <div class="browser-dot green"></div>
-          </div>
-          <div class="browser-url"></div>
-        </div>
-        <div class="browser-viewport">
-          <img src="img/works_cosme3.jpg" alt="" class="lp-scroll-img">
-          <div class="lp-scroll-placeholder">
-            <div class="lp-scroll-placeholder-inner">
-              <div class="dummy-block dummy-hero"></div>
-              <div class="dummy-block dummy-section"></div>
-              <div class="dummy-block dummy-section-alt"></div>
-              <div class="dummy-block dummy-narrow"></div>
-              <div class="dummy-block dummy-wide"></div>
-              <div class="dummy-block dummy-footer"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="phone-frame">
-        <div class="phone-notch"></div>
-        <div class="phone-viewport">
-          <img src="img/works_cosme4.jpg" alt="" class="phone-scroll-img">
-          <div class="phone-scroll-placeholder">
-            <div class="lp-scroll-placeholder-inner" style="padding:1rem;">
-              <div class="dummy-block dummy-hero" style="height:160px;"></div>
-              <div class="dummy-block dummy-section" style="height:120px;"></div>
-              <div class="dummy-block dummy-section-alt" style="height:140px;"></div>
-              <div class="dummy-block dummy-wide" style="height:160px;"></div>
-              <div class="dummy-block dummy-footer" style="height:80px;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 本文 -->
   <div class="article-layout">
-
     <article class="article-body">
-
-      <p class="article-lead">
-        美容情報サービス「@cosme」のサブスクリプションボックス「BLOOMBOX」の販売促進LP・バナー・コーディングを担当。Summer・Winter 2シーズン分を一貫して制作しました。
-      </p>
-
+      <p class="article-lead">ビーズソファ・カウチソファのEC商品ページ・LPの制作を担当。商品の魅力を最大限に伝えるため、ビジュアル設計から動画の絵コンテまで一貫して手がけました。</p>
       <div class="article-img">
-        <img src="img/works_cosme_img2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <img src="img/works_sofa_img2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="article-img-ph" style="display:none;"></div>
-        <p class="article-img-caption">PC・SP共通デザイン</p>
+        <p class="article-img-caption"></p>
+      </div>
+      <p class="article-text">ビーズソファの「やわらかさ」「2way使用」という商品特性をビジュアルで伝えるため、シーン別の使用イメージを重視したデザインを構成。ECページ・LP・SNS広告バナーまで一貫したクリエイティブで制作しました。</p>
+      <p class="article-text">ビーズタイプ・カウチタイプそれぞれのLPをYahooショッピング・楽天向けに最適化し、各プラットフォームのUI・ガイドラインに沿いながら、CVR向上を意識した導線設計を行いました。</p>
+
+      <div class="article-section-title">動画制作</div>
+      <p class="article-text">商品の使用シーンを伝える動画広告を制作。絵コンテ作成から映像編集まで担当しました。</p>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:2rem 0;">
+        <iframe src="https://www.youtube.com/embed/3LFUh23X6pc" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:2rem 0;">
+        <iframe src="https://www.youtube.com/embed/Kecn59z1URw" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe>
       </div>
 
-      <div class="article-img">
-        <img src="img/works_cosme_img3.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="article-img-ph" style="display:none;"></div>
-        <p class="article-img-caption">PC・SP共通デザイン</p>
+      <div class="article-section-title">動画絵コンテ</div>
+      <p class="article-text">動画制作前に作成した絵コンテです。シーン構成・カメラワーク・テキストの配置を事前に設計し、スムーズな撮影・編集につなげました。</p>
+      <div class="storyboard-stack">
+        <img src="img/movie1.jpg" alt="ビーズソファ 動画絵コンテ">
+        <img src="img/movie2.png" alt="カウチソファ 動画絵コンテ">
       </div>
 
-      <p class="article-text">
-        BLOOMBOXは@cosmeが厳選したコスメを詰め合わせた数量限定ボックス。「限定感」「豪華さ」「発売日のわくわく感」を伝えることを軸に、ビジュアルと導線を設計しました。
-      </p>
-      <p class="article-text">
-        SummerBoxはさわやかなグリーン×ホワイトで夏らしい清涼感を、WinterBoxは淡いブルー×シルバーで冬の特別感を表現。シーズンごとにトーンを変えながら、ブランドの統一感も維持しました。
-      </p>
+      <div class="article-section-title">商品詳細画像</div>
+      <div class="img-grid-2">
+        <div class="img-grid-item"><img src="img/luminous_pd1.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span style="display:none;">商品詳細</span></div>
+        <div class="img-grid-item"><img src="img/luminous_pd2.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span style="display:none;">商品詳細</span></div>
+      </div>
 
-      <!-- バナー -->
-      <div class="article-section-title">販促バナーデザイン</div>
-      <p class="article-text">
-        LP発売日に合わせてSNS・サイト内で展開したバナーです。「数量限定」「発売日」を目立たせながら、クリック意欲を高めるビジュアル設計を意識しました。
-      </p>
-
-      <div class="banner-stack">
-        <img src="img/2023summerbox_bn1.png" alt="SummerBox バナー">
-        <img src="img/2022winterbox_bn1.png" alt="WinterBox バナー">
+      <div class="article-section-title">バナーデザイン</div>
+      <p class="article-text">Yahooショッピング内のセール告知・GWキャンペーン・コレクション特集など、各プロモーションに合わせたバナーを制作。季節感・訴求内容に応じてビジュアルトーンを変えながら、ブランドの統一感を維持しました。</p>
+      <div class="banner-showcase">
+        <img src="img/nigiwaibn_02.png" alt="倍倍ストアセール バナー">
+        <img src="img/nigiwaibn_03.png" alt="GW Pick UP SALE バナー">
+        <img src="img/nigiwaibn_014.png" alt="座椅子コレクション バナー">
       </div>
 
       <div class="process-block">
         <div class="process-block-title">制作について・工夫した点</div>
-        <p class="process-block-text">
-          LP制作からHTMLコーディングまで一貫して担当しました。数量限定ゆえに「早く申し込みたい」という購買意欲を高めるため、ファーストビューに発売日・限定数の訴求を集中させる構成を採用。スクロールするにつれて商品詳細・ブランドストーリーへ誘導する流れを意識しました。バナーはLPのビジュアルトーンを踏襲しながら、短時間で情報が伝わるシンプルな設計にまとめています。
-        </p>
+        <p class="process-block-text">「やわらかさ」「使いやすさ」という抽象的な商品の良さを、動画と静止画の両軸で伝えることを意識しました。動画は絵コンテから一貫して担当し、「自分時間のリラックス」「リモートワーク」「2人でくつろぐ」など複数の使用シーンを丁寧に描写。LPとの世界観の統一にも気を配り、ページ全体でブランドイメージを一貫させました。</p>
       </div>
 
       <div class="article-nav">
-        <a href="works_jins.html" class="article-nav-item">
+        <a href="itoyokado_2024_china.html" class="article-nav-item">
           <div class="article-nav-label">← Prev</div>
-          <div class="article-nav-title">【JINS】受験生応援キャンペーンLP</div>
+          <div class="article-nav-title">【イトーヨーカドー】ネットスーパー販促LP</div>
         </a>
-        <a href="works_itykd.html" class="article-nav-item next">
-          <div class="article-nav-label">Next →</div>
-          <div class="article-nav-title">【ネットスーパー】キャンペーンLP</div>
+        <a href="index.html#works" class="article-nav-item next">
+          <div class="article-nav-label">Back →</div>
+          <div class="article-nav-title">Works 一覧へ戻る</div>
         </a>
       </div>
-
     </article>
 
     <aside class="article-sidebar">
-
       <div class="sidebar-section">
         <div class="sidebar-title">Project Info</div>
         <div class="sidebar-info-list">
-          <div class="sidebar-info-item">
-            <div class="sidebar-info-label">Client</div>
-            <div class="sidebar-info-value">株式会社アイスタイル</div>
-          </div>
-          <div class="sidebar-info-item">
-            <div class="sidebar-info-label">Year</div>
-            <div class="sidebar-info-value">2023</div>
-          </div>
-          <div class="sidebar-info-item">
-            <div class="sidebar-info-label">Period</div>
-            <div class="sidebar-info-value">ワイヤー 1.5日 / デザイン 3日 / Banner 1日 / Coding 1.5日</div>
-          </div>
-          <div class="sidebar-info-item">
-            <div class="sidebar-info-label">Role</div>
-            <div class="sidebar-info-value">デザイン / コーディング</div>
-          </div>
-          <div class="sidebar-info-item">
-            <div class="sidebar-info-label">Target</div>
-            <div class="sidebar-info-value">美容に関心のある20〜40代女性</div>
-          </div>
-          <div class="sidebar-info-item">
-            <div class="sidebar-info-label">Goal</div>
-            <div class="sidebar-info-value">数量限定BOX販売促進・認知拡大</div>
-          </div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Client</div><div class="sidebar-info-value">株式会社ドウシシャ</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Year</div><div class="sidebar-info-value">2022</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Period</div><div class="sidebar-info-value">LP 1.5日 / Banner 0.5日</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Role</div><div class="sidebar-info-value">デザイン / 動画制作</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Target</div><div class="sidebar-info-value">家具に興味のある単身・2人世帯</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Goal</div><div class="sidebar-info-value">CVR数値改善</div></div>
         </div>
       </div>
-
       <div class="sidebar-section">
         <div class="sidebar-title">Tools</div>
-        <div class="sidebar-tags">
-          <span class="sidebar-tag">Photoshop</span>
-          <span class="sidebar-tag">Dreamweaver</span>
-        </div>
+        <div class="sidebar-tags"><span class="sidebar-tag">Photoshop</span><span class="sidebar-tag">Premiere Pro</span></div>
       </div>
-
       <div class="sidebar-section">
         <div class="sidebar-title">URL</div>
         <div class="sidebar-url">
-          <a href="" rel="noopener">掲載終了</a>
+          <a href="https://store.shopping.yahoo.co.jp/luminous-club/wcs-be.html" target="_blank" rel="noopener">ビーズソファ・掲載終了<br>カウチソファ →</a>
         </div>
       </div>
-
-      <a href="index.html#works" class="back-btn" style="display:inline-flex;">
-        ← Works 一覧へ
-      </a>
-
+      <a href="index.html#works" class="back-btn" style="display:inline-flex;">← Works 一覧へ</a>
     </aside>
   </div>
 
@@ -436,6 +234,5 @@
     <div class="footer-logo">Rika Yamada</div>
     <p class="footer-copy">© Rika Yamada. All rights reserved.</p>
   </footer>
-
 </body>
 </html>
