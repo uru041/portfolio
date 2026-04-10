@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Works — Stock Photo Generator | RIKA YAMADA Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --sage: #7a9e87; --sage-light: #a8c4b0; --sage-pale: #d4e5d8; --sage-mist: #eef4f0; --yellow: #e8d89a; --yellow-pale: #f5efc8; --yellow-mist: #faf7e8; --cream: #faf8f3; --brown: #4a3d2e; --brown-mid: #7a6555; --brown-light: #b8a090; --white: #ffffff; --text: #3a3028;
+      --red: #a01010; --red-light: #fdf2f0;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 300; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(250,248,243,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(168,196,176,0.3); }
+    .nav-logo { font-style: italic; font-size: 1.1rem; letter-spacing: 0.2em; color: var(--brown); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brown-mid); position: relative; transition: color 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--sage); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--sage); } .nav-links a:hover::after { width: 100%; }
+
+    .breadcrumb { margin-top: 72px; padding: 1rem 5rem; background: var(--white); border-bottom: 1px solid var(--sage-pale); display: flex; align-items: center; gap: 0.6rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); }
+    .breadcrumb a { color: var(--sage); transition: opacity 0.2s; } .breadcrumb a:hover { opacity: 0.7; } .breadcrumb-sep { opacity: 0.4; }
+
+    .page-hero { background: var(--sage-mist); padding: 4rem 5rem 3rem; position: relative; overflow: hidden; }
+    .page-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .page-hero-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .page-hero-label::before { content: ''; width: 25px; height: 1px; background: var(--sage); }
+    .page-hero-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--brown); line-height: 1.2; margin-bottom: 1rem; }
+    .page-hero-title em { font-style: italic; color: var(--sage); }
+    .page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; padding-bottom: 2rem; }
+    .meta-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.3rem; }
+    .meta-value { font-family: 'Noto Sans JP', sans-serif; font-size: 0.75rem; color: var(--brown-mid); }
+    .page-hero-visual { aspect-ratio: 4/3; background: var(--sage-pale); overflow: hidden; align-self: end; }
+    .page-hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .page-hero-visual-ph { width: 100%; height: 100%; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sage-mist) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 1rem; color: var(--sage-light); }
+
+    .hero-wave { overflow: hidden; line-height: 0; margin-top: -1px; }
+    .hero-wave svg { display: block; width: 100%; }
+
+    .article-layout { display: grid; grid-template-columns: 1fr 280px; gap: 4rem; padding: 5rem 5rem; max-width: 1200px; margin: 0 auto; }
+    .article-lead { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 300; line-height: 1.8; color: var(--brown); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--sage-pale); }
+    .article-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.82rem; line-height: 2.3; color: var(--brown-mid); margin-bottom: 1.5rem; }
+    .article-img { margin: 2.5rem 0; border-radius: 4px; overflow: hidden; }
+    .article-img img { width: 100%; display: block; }
+    .article-img-ph { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--yellow-pale) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; color: var(--sage-light); font-size: 0.9rem; }
+    .article-img-caption { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); margin-top: 0.5rem; letter-spacing: 0.05em; }
+    .article-section-title { font-size: 1.4rem; font-style: italic; color: var(--brown); margin: 3rem 0 1rem; padding-left: 1rem; border-left: 2px solid var(--sage); }
+    .process-block { background: var(--sage-mist); border-radius: 8px; padding: 2rem; margin: 2.5rem 0; border-left: 3px solid var(--sage); }
+    .process-block-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+    .process-block-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem; line-height: 2.2; color: var(--brown-mid); }
+
+    .article-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--sage-pale); }
+    .article-nav-item { padding: 1.5rem; border: 1px solid var(--sage-pale); border-radius: 4px; transition: all 0.3s; cursor: pointer; }
+    .article-nav-item:hover { border-color: var(--sage); background: var(--sage-mist); }
+    .article-nav-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+    .article-nav-title { font-size: 0.95rem; color: var(--brown); line-height: 1.4; }
+    .article-nav-item.next { text-align: right; }
+
+    .article-sidebar {}
+    .sidebar-section { margin-bottom: 2.5rem; }
+    .sidebar-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--sage-pale); }
+    .sidebar-info-list { display: flex; flex-direction: column; gap: 1rem; }
+    .sidebar-info-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.15em; color: var(--brown-light); margin-bottom: 0.2rem; }
+    .sidebar-info-value { font-family: 'Noto Sans JP', sans-serif; font-size: 0.78rem; color: var(--brown-mid); line-height: 1.7; }
+    .sidebar-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .sidebar-tag { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.05em; color: var(--sage); border: 1px solid var(--sage-pale); padding: 0.3rem 0.8rem; border-radius: 20px; background: var(--sage-mist); }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; color: var(--brown-mid); border: 1px solid var(--sage-pale); padding: 0.65rem 1.5rem; border-radius: 20px; transition: all 0.3s; margin-top: 1rem; }
+    .back-btn:hover { border-color: var(--sage); color: var(--sage); background: var(--sage-mist); }
+
+    footer { background: var(--brown); padding: 2.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; }
+    .footer-copy { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.25); }
+
+    /* スクリーングリッド */
+    .screens-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin: 2rem 0; }
+    .screen-card { border-radius: 6px; overflow: hidden; border: 1px solid var(--sage-pale); }
+    .screen-img { width: 100%; aspect-ratio: 16/10; background: var(--sage-pale); overflow: hidden; }
+    .screen-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .screen-img-ph { width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); display: flex; align-items: center; justify-content: center; }
+    .screen-info { padding: 0.8rem 1rem; border-top: 1px solid var(--sage-pale); background: var(--white); }
+    .screen-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.15em; color: var(--sage); text-transform: uppercase; margin-bottom: 0.2rem; }
+    .screen-name { font-family: 'Noto Sans JP', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--brown); margin-bottom: 0.3rem; }
+    .screen-note { font-family: 'Noto Sans JP', sans-serif; font-size: 0.68rem; color: var(--brown-light); line-height: 1.7; }
+
+    /* テストカード */
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin: 2rem 0; }
+    .test-card { background: var(--sage-mist); border-radius: 6px; padding: 1.5rem; border: 1px solid var(--sage-pale); }
+    .test-num { font-size: 2rem; font-weight: 300; color: var(--sage); margin-bottom: 0.5rem; font-style: italic; }
+    .test-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--brown); margin-bottom: 0.6rem; }
+    .test-prob { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; color: var(--brown-mid); line-height: 1.9; margin-bottom: 0.8rem; }
+    .test-arrow { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--sage); margin-bottom: 0.4rem; }
+    .test-fix { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; font-weight: 500; color: var(--sage); line-height: 1.8; }
+
+    /* カスタマージャーニー */
+    .journey-wrap { background: var(--white); border-radius: 8px; padding: 2rem; border: 1px solid var(--sage-pale); margin: 2rem 0; }
+    .journey-phase { margin-bottom: 2rem; }
+    .phase-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .phase-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Noto Sans JP', sans-serif; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+    .phase-num.before { background: var(--brown); color: #fff; }
+    .phase-num.after { background: var(--sage); color: #fff; }
+    .phase-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; font-weight: 500; color: var(--brown); }
+    .phase-badge { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; font-weight: 500; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 2px; text-transform: uppercase; }
+    .badge-friction { background: #FCEBEB; color: #A32D2D; border: 0.5px solid #F09595; }
+    .badge-efficiency { background: var(--sage-mist); color: var(--sage); border: 0.5px solid var(--sage-pale); }
+    .cards-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .jcard { border-radius: 4px; padding: 10px 12px; border: 0.5px solid; }
+    .jcard.before { background: #FCEBEB; border-color: #F09595; }
+    .jcard.after { background: var(--sage-mist); border-color: var(--sage-pale); }
+    .jcard.neutral { background: var(--cream); border-color: var(--sage-pale); }
+    .jcard.highlight { background: var(--sage-mist); border: 1.5px solid var(--sage); }
+    .jcard-step { font-family: 'Noto Sans JP', sans-serif; font-size: 9px; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 4px; }
+    .jcard-step.before { color: #A32D2D; }
+    .jcard-step.after { color: var(--sage); }
+    .jcard-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.7rem; font-weight: 500; line-height: 1.4; margin-bottom: 4px; color: var(--brown); }
+    .jcard-desc { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; color: var(--brown-mid); line-height: 1.6; margin-bottom: 4px; }
+    .jcard-pain { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; font-weight: 500; color: #A32D2D; line-height: 1.5; }
+    .jcard-gain { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; font-weight: 500; color: var(--sage); line-height: 1.5; }
+    .journey-divider { border: none; border-top: 1px solid var(--sage-pale); margin: 1.5rem 0; }
+    .time-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--sage-mist); border: 0.5px solid var(--sage-pale); border-radius: 3px; padding: 4px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--sage); margin-bottom: 1rem; }
+
+    .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .stat-card { border-radius: 6px; padding: 1.5rem; text-align: center; }
+    .stat-card.dark { background: var(--brown); }
+    .stat-card.green { background: var(--sage); }
+    .stat-label-dark { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; text-transform: uppercase; }
+    .stat-label-green { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; text-transform: uppercase; }
+    .stat-num-red { font-size: 3rem; font-weight: 300; color: #f4a0a0; font-style: italic; line-height: 1; }
+    .stat-num-white { font-size: 3rem; font-weight: 300; color: #fff; font-style: italic; line-height: 1; }
+
+    /* ロゴ */
+    .logo-display { display: flex; align-items: center; gap: 2rem; padding: 2rem; background: var(--brown); border-radius: 8px; margin: 2rem 0; }
+    .logo-display img { height: 60px; width: auto; }
+    .logo-display-ph { width: 60px; height: 60px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo-caption { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; color: rgba(255,255,255,0.5); line-height: 2; }
+    .logo-name-text { font-family: 'Noto Sans JP', sans-serif; font-size: 1rem; font-weight: 500; color: #fff; margin-bottom: 0.3rem; }
+
+    /* 成果数値 */
+    .outcome-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0; }
+    .outcome-item { background: var(--sage-mist); border-radius: 6px; padding: 1.2rem; text-align: center; border: 1px solid var(--sage-pale); }
+    .outcome-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--sage); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .outcome-value { font-size: 1.6rem; font-weight: 300; color: var(--brown); line-height: 1.2; }
+    .outcome-unit { font-family: 'Noto Sans JP', sans-serif; font-size: 0.7rem; color: var(--brown-mid); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+      .breadcrumb { padding: 1rem 1.5rem; }
+      .page-hero { padding: 3rem 1.5rem; } .page-hero-inner { grid-template-columns: 1fr; }
+      .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; } .article-sidebar { order: -1; }
+      .screens-grid, .test-grid { grid-template-columns: 1fr; }
+      .cards-row { grid-template-columns: 1fr 1fr; }
+      .outcome-row { grid-template-columns: 1fr 1fr; }
+      .article-nav { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Rika Yamada</div>
+    <ul class="nav-links">
+      <li><a href="index.html#works">Works</a></li>
+      <li><a href="index.html#skill">Skill</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span class="breadcrumb-sep">›</span>
+    <a href="index.html#works">Works</a><span class="breadcrumb-sep">›</span>
+    <span>【UX/UI】Stock Photo Generator</span>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div>
+        <div class="page-hero-label">UX Design / UI Design / Development</div>
+        <h1 class="page-hero-title">Stock Photo<br><em>Generator</em></h1>
+        <div class="page-hero-meta">
+          <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">UXデザイン / UIデザイン / 実装</div></div>
+          <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">2026</div></div>
+          <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">Stitch / React / Claude API</div></div>
+        </div>
+        <a href="index.html#works" class="back-btn">← Works 一覧へ</a>
+      </div>
+      <div class="page-hero-visual">
+        <img src="img/spg_hero.png" alt="Stock Photo Generator" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="page-hero-visual-ph" style="display:none;">Stock Photo Generator</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,25 C360,50 1080,0 1440,25 L1440,50 L0,50 Z" fill="#faf8f3"/>
+    </svg>
+  </div>
+
+  <div class="article-layout">
+    <article class="article-body">
+
+      <p class="article-lead">
+        自分自身がイラストレーターとしてAdobe Stockに投稿する中で感じていた課題を出発点に、メタデータの一括生成ツールをゼロから設計・実装したUXデザインプロジェクト。
+      </p>
+
+      <!-- 課題定義 -->
+      <div class="article-section-title">01 — 課題定義・カスタマージャーニー</div>
+      <p class="article-text">
+        毎日10枚のイラストをAdobe Stockに投稿する作業において、タイトル・キーワード（最大49個）・カテゴリのメタデータ作成に1バッチあたり30〜40分かかっていた。1枚ずつAIに依頼し、コピペで登録する作業の繰り返しが大きな摩擦ポイントになっていた。
+      </p>
+
+      <div class="journey-wrap">
+        <div class="journey-phase">
+          <div class="phase-header">
+            <div class="phase-num before">01</div>
+            <div class="phase-label">アプリ導入前</div>
+            <span class="phase-badge badge-friction">Friction Heavy</span>
+          </div>
+          <div class="cards-row">
+            <div class="jcard before">
+              <div class="jcard-step before">Step 01</div>
+              <div class="jcard-title">イラスト制作</div>
+              <div class="jcard-desc">1枚ずつ完成</div>
+            </div>
+            <div class="jcard before">
+              <div class="jcard-step before">Step 02</div>
+              <div class="jcard-title">AIに依頼</div>
+              <div class="jcard-desc">キーワード49個を1枚ずつ手動依頼</div>
+              <div class="jcard-pain">繰り返しが苦痛</div>
+            </div>
+            <div class="jcard before">
+              <div class="jcard-step before">Step 03</div>
+              <div class="jcard-title">Stockに登録</div>
+              <div class="jcard-desc">管理画面に1枚ずつD&D</div>
+              <div class="jcard-pain">枚数分繰り返す</div>
+            </div>
+            <div class="jcard before">
+              <div class="jcard-step before">Step 04</div>
+              <div class="jcard-title">メタデータ入力</div>
+              <div class="jcard-desc">1枚ずつコピペ入力</div>
+              <div class="jcard-pain">ミスが起きやすい</div>
+            </div>
+            <div class="jcard before">
+              <div class="jcard-step before">Step 05</div>
+              <div class="jcard-title">登録完了</div>
+              <div class="jcard-desc">記録は手元に残らない</div>
+              <div class="jcard-pain">履歴なし</div>
+            </div>
+          </div>
+        </div>
+        <hr class="journey-divider">
+        <div class="journey-phase">
+          <div class="phase-header">
+            <div class="phase-num after">02</div>
+            <div class="phase-label">Stock Photo Generator 導入後</div>
+            <span class="phase-badge badge-efficiency">High Efficiency</span>
+          </div>
+          <div class="time-badge">⏱ 30〜40分 → 数分に短縮</div>
+          <div class="cards-row">
+            <div class="jcard neutral">
+              <div class="jcard-step after">Flow 01</div>
+              <div class="jcard-title">イラスト制作</div>
+              <div class="jcard-desc">複数枚まとめて完成</div>
+            </div>
+            <div class="jcard after">
+              <div class="jcard-step after">Flow 02</div>
+              <div class="jcard-title">一括アップロード</div>
+              <div class="jcard-desc">まとめてドロップ</div>
+              <div class="jcard-gain">1回で全枚数読み込み</div>
+            </div>
+            <div class="jcard highlight">
+              <div class="jcard-step after">Flow 03</div>
+              <div class="jcard-title">AI一括生成</div>
+              <div class="jcard-desc">ボタン1つで生成</div>
+              <div class="jcard-gain">全枚数を自動生成</div>
+            </div>
+            <div class="jcard after">
+              <div class="jcard-step after">Flow 04</div>
+              <div class="jcard-title">確認・修正</div>
+              <div class="jcard-desc">インラインで編集</div>
+              <div class="jcard-gain">必要箇所だけ修正</div>
+            </div>
+            <div class="jcard after">
+              <div class="jcard-step after">Flow 05</div>
+              <div class="jcard-title">CSV出力→登録</div>
+              <div class="jcard-desc">一括登録</div>
+              <div class="jcard-gain">履歴がいつでも確認できる</div>
+            </div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card dark">
+            <div class="stat-label-dark">Before (avg/batch)</div>
+            <div class="stat-num-red">2.5<span style="font-size:1.2rem">h</span></div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-label-green">After (avg/batch)</div>
+            <div class="stat-num-white">12<span style="font-size:1.2rem">m</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ワイヤーフレーム -->
+      <div class="article-section-title">02 — 設計プロセス・ワイヤーフレーム</div>
+      <p class="article-text">
+        「今日の作業」「履歴一覧（Archives）」「セッション詳細」の3画面で完結するシンプルな情報設計を採用。サイドバーから過去セッションに素早くアクセスできる構造にした。
+      </p>
+      <div class="screens-grid">
+        <div class="screen-card">
+          <div class="screen-img">
+            <img src="img/spg_wire1.png" alt="ワイヤー 今日の作業" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="screen-img-ph" style="display:none;"><span style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:#555;letter-spacing:0.1em">WIREFRAME 01</span></div>
+          </div>
+          <div class="screen-info">
+            <div class="screen-label">Screen 01</div>
+            <div class="screen-name">今日の作業</div>
+            <div class="screen-note">ドロップ・指示・生成を1画面に集約</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div class="screen-img">
+            <img src="img/spg_wire2.png" alt="ワイヤー 履歴" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="screen-img-ph" style="display:none;"><span style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:#555;letter-spacing:0.1em">WIREFRAME 02</span></div>
+          </div>
+          <div class="screen-info">
+            <div class="screen-label">Screen 02</div>
+            <div class="screen-name">履歴一覧</div>
+            <div class="screen-note">CSV出力状況を一目で確認できる設計</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div class="screen-img">
+            <img src="img/spg_wire3.png" alt="ワイヤー セッション詳細" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="screen-img-ph" style="display:none;"><span style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:#555;letter-spacing:0.1em">WIREFRAME 03</span></div>
+          </div>
+          <div class="screen-info">
+            <div class="screen-label">Screen 03</div>
+            <div class="screen-name">セッション詳細</div>
+            <div class="screen-note">左サムネイル一覧・右詳細のパネル型</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UIデザイン -->
+      <div class="article-section-title">03 — ビジュアルデザイン</div>
+      <p class="article-text">
+        Google Stitch（AI UIデザインツール）を活用して効率的にUIデザインを起こした。ダークナビゲーション・赤のアクセントカラー・Zen Kaku Gothic Newのタイポグラフィで、プロフェッショナルかつ使いやすい画面を設計した。
+      </p>
+      <div class="screens-grid">
+        <div class="screen-card">
+          <div class="screen-img">
+            <img src="img/spg_design1.png" alt="UIデザイン 今日の作業" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="screen-img-ph" style="display:none;"><span style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:#555;letter-spacing:0.1em">TODAY'S WORK</span></div>
+          </div>
+          <div class="screen-info">
+            <div class="screen-label">Design 01</div>
+            <div class="screen-name">Today's Work</div>
+            <div class="screen-note">Step 1〜3のカード構成。生成ボタンを常に視界内に配置。</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div class="screen-img">
+            <img src="img/spg_design2.png" alt="UIデザイン Archives" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="screen-img-ph" style="display:none;"><span style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:#555;letter-spacing:0.1em">ARCHIVES</span></div>
+          </div>
+          <div class="screen-info">
+            <div class="screen-label">Design 02</div>
+            <div class="screen-name">Archives</div>
+            <div class="screen-note">サムネイルグリッドとメモ機能でセッションを管理。</div>
+          </div>
+        </div>
+        <div class="screen-card">
+          <div class="screen-img">
+            <img src="img/spg_design3.png" alt="UIデザイン セッション詳細" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="screen-img-ph" style="display:none;"><span style="font-family:'Noto Sans JP',sans-serif;font-size:0.65rem;color:#555;letter-spacing:0.1em">SESSION DETAIL</span></div>
+          </div>
+          <div class="screen-info">
+            <div class="screen-label">Design 03</div>
+            <div class="screen-name">Session Detail</div>
+            <div class="screen-note">キーワードを上位10個赤表示で優先度を可視化。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- テストと改善 -->
+      <div class="article-section-title">04 — テストと改善</div>
+      <p class="article-text">
+        実際に自分の業務で使いながら課題を発見し、UIの改善につなげた。「作って終わり」ではなく、使う中で生まれた気づきを設計に反映するプロセスを重視した。
+      </p>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-num">01</div>
+          <div class="test-title">今日の作業画面</div>
+          <div class="test-prob">ドロップゾーンが大きすぎて生成ボタンが画面外に。スクロールしないとボタンが見えない状態だった。</div>
+          <div class="test-arrow">↓ 改善</div>
+          <div class="test-fix">Step 1〜3カード構成に変更。全操作が1画面で完結するようになった。</div>
+        </div>
+        <div class="test-card">
+          <div class="test-num">02</div>
+          <div class="test-title">メタデータ確認・編集</div>
+          <div class="test-prob">生成後にテーブルが並ぶだけで1枚ずつ確認しにくかった。キーワードが多いと特に読みにくい。</div>
+          <div class="test-arrow">↓ 改善</div>
+          <div class="test-fix">左サムネイル一覧・右詳細のパネル型に変更。キーワードをタグ表示し、上位10個を赤で強調。</div>
+        </div>
+        <div class="test-card">
+          <div class="test-num">03</div>
+          <div class="test-title">履歴画面</div>
+          <div class="test-prob">セッション名がなく日付しか手がかりがなかった。過去のバッチを探し出すのが困難。</div>
+          <div class="test-arrow">↓ 改善</div>
+          <div class="test-fix">メモ（セッション名）機能を追加。サムネイルグリッドで内容を視覚的に把握できるカード型に変更。</div>
+        </div>
+      </div>
+
+      <!-- ロゴ -->
+      <div class="article-section-title">05 — ブランディング・ロゴ</div>
+      <p class="article-text">
+        カメラ×AIをモチーフにしたロゴマークを制作。ナビゲーションバーとSTEPマーカーに使用し、サービスとしての一貫性を持たせた。
+      </p>
+      <div class="logo-display">
+        <img src="img/logo.png" alt="Stock Photo Generator Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="logo-display-ph" style="display:none;">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="white" stroke-width="2"/><path d="M16 8 L20 16 L16 24 L12 16 Z" fill="white"/></svg>
+        </div>
+        <div>
+          <div class="logo-name-text">Stock Photo Generator</div>
+          <div class="logo-caption">カメラ×AIをモチーフにしたロゴマーク。<br>ナビゲーションバー・STEPマーカーに使用。</div>
+        </div>
+      </div>
+
+      <!-- 本番・成果 -->
+      <div class="article-section-title">06 — 実装・成果</div>
+      <p class="article-text">
+        React + Vite + Anthropic Claude APIで実装。ローカル環境で実際の業務に使用しており、毎日の投稿作業を大幅に効率化した。
+      </p>
+
+      <div class="article-img">
+        <img src="img/spg_final.png" alt="本番スクリーンショット" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="article-img-ph" style="display:none;">本番スクリーンショット</div>
+        <p class="article-img-caption">本番環境 — ローカルで動作するReactアプリ</p>
+      </div>
+
+      <div class="outcome-row">
+        <div class="outcome-item">
+          <div class="outcome-label">時間削減</div>
+          <div class="outcome-value">92<span style="font-size:1rem">%</span></div>
+          <div class="outcome-unit">time saved</div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-label">実装技術</div>
+          <div class="outcome-value" style="font-size:1rem;">React<br>+ Claude API</div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-label">出力形式</div>
+          <div class="outcome-value" style="font-size:1rem;">Adobe<br>Stock CSV</div>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-label">月間コスト</div>
+          <div class="outcome-value">〜300<span style="font-size:1rem">円</span></div>
+          <div class="outcome-unit">10枚/日 × 30日</div>
+        </div>
+      </div>
+
+      <div class="process-block">
+        <div class="process-block-title">制作を通じて学んだこと</div>
+        <p class="process-block-text">
+          自分自身のペインポイントから出発したことで、ユーザー調査なしに深い課題理解ができた。ワイヤーから始めて実装まで一人でやり切ったことで、UXの判断がそのままUIに反映される体験を得られた。AIツール（Stitch・Claude API）を活用した効率的な設計・開発のワークフローも、このプロジェクトで確立できた。
+        </p>
+      </div>
+
+      <div class="article-nav">
+        <a href="works_sdt.html" class="article-nav-item">
+          <div class="article-nav-label">← Prev</div>
+          <div class="article-nav-title">【LP/Banner/DTP】採用サイトLP・展示会印刷物</div>
+        </a>
+        <a href="works_illust.html" class="article-nav-item next">
+          <div class="article-nav-label">Next →</div>
+          <div class="article-nav-title">【イラスト活動】My Webpage</div>
+        </a>
+      </div>
+
+    </article>
+
+    <aside class="article-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Project Info</div>
+        <div class="sidebar-info-list">
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Category</div><div class="sidebar-info-value">UX Design / UI Design / Development</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Year</div><div class="sidebar-info-value">2026</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Role</div><div class="sidebar-info-value">UXデザイン / UIデザイン / フロントエンド実装</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Target</div><div class="sidebar-info-value">Adobe Stockに投稿するイラストレーター</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Goal</div><div class="sidebar-info-value">メタデータ作成の自動化・作業時間の削減</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Result</div><div class="sidebar-info-value">30〜40分 → 数分（約92%削減）</div></div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Tools</div>
+        <div class="sidebar-tags">
+          <span class="sidebar-tag">Google Stitch</span>
+          <span class="sidebar-tag">React</span>
+          <span class="sidebar-tag">Vite</span>
+          <span class="sidebar-tag">Claude API</span>
+          <span class="sidebar-tag">Figma</span>
+          <span class="sidebar-tag">Node.js</span>
+        </div>
+      </div>
+      <a href="index.html#works" class="back-btn" style="display:inline-flex;">← Works 一覧へ</a>
+    </aside>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Rika Yamada</div>
+    <p class="footer-copy">© Rika Yamada. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
