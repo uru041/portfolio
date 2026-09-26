@@ -2,6 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // 認証チェック（未ログインならパスワード画面へ。入力後にこのページへ戻る）
+    if (sessionStorage.getItem('auth') !== 'ok') {
+      var next = location.pathname.split('/').pop() + location.hash;
+      location.replace('gate.html?next=' + encodeURIComponent(next));
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
   <title>Works — RIKA YAMADA Portfolio</title>
@@ -100,6 +107,12 @@
     .print-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
     .print-item { display: flex; flex-direction: column; gap: 0.6rem; }
     .print-item img { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--sage-pale); box-shadow: 0 4px 16px rgba(74,61,46,0.08); }
+    .zoomable img { cursor: zoom-in; transition: opacity 0.3s; }
+    .zoomable img:hover { opacity: 0.85; }
+    .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(58,48,40,0.85); display: none; align-items: center; justify-content: center; padding: 2rem; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .lightbox-close { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 2rem; line-height: 1; cursor: pointer; }
     .print-caption { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); letter-spacing: 0.05em; text-align: center; padding: 0.3rem 0; border-top: 1px solid var(--sage-pale); }
 
     /* チラシ・横パネル（2列） */
@@ -119,7 +132,7 @@
 <body>
 
   <nav>
-    <div class="nav-logo">Rika Yamada</div>
+    <a href="index.html" class="nav-logo">Rika Yamada</a>
     <ul class="nav-links">
       <li><a href="index.html#works">Works</a></li>
       <li><a href="index.html#skill">Skill</a></li>
@@ -214,7 +227,7 @@
         採用LPと連動したSNS広告バナーも制作。ABテストを実施した結果、男性は顔写真があるクリエイティブ、女性は感性・世界観を訴求するクリエイティブの方がクリック率が高い傾向が見られ、ターゲット別に出し分ける運用につなげました。
       </p>
 
-      <div class="img-grid-2">
+      <div class="img-grid-2 zoomable">
         <div class="img-grid-item">
           <img src="img/works_sdt_bn1.jpg" alt="採用バナー A" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
           <span style="display:none;">バナーA</span>
@@ -232,7 +245,7 @@
       </p>
 
       <!-- 縦パネル3枚 -->
-      <div class="print-grid-3">
+      <div class="print-grid-3 zoomable">
         <div class="print-item">
           <img src="img/sdt_panel1.png" alt="展示会パネル デザインエンジニアリング">
           <p class="print-caption">展示会パネル — デザインエンジニアリング</p>
@@ -248,7 +261,7 @@
       </div>
 
       <!-- チラシ・横連結パネル -->
-      <div class="print-grid-2">
+      <div class="print-grid-2 zoomable">
         <div class="print-item">
           <img src="img/sdt_flyer1.png" alt="会社紹介チラシ 両面">
           <p class="print-caption">会社紹介チラシ — 両面折りパンフレット</p>
@@ -314,5 +327,24 @@ Generator</div>
     <p class="footer-copy">© Rika Yamada. All rights reserved.</p>
   </footer>
 
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="閉じる">×</button>
+    <img src="" alt="">
+  </div>
+  <script>
+    (function () {
+      var box = document.getElementById('lightbox');
+      var boxImg = box.querySelector('img');
+      function close() { box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+      document.querySelectorAll('.zoomable img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          boxImg.src = img.src; boxImg.alt = img.alt;
+          box.classList.add('open'); box.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+        });
+      });
+      box.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
 </html>

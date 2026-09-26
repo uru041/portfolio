@@ -2,6 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // 認証チェック（未ログインならパスワード画面へ。入力後にこのページへ戻る）
+    if (sessionStorage.getItem('auth') !== 'ok') {
+      var next = location.pathname.split('/').pop() + location.hash;
+      location.replace('gate.html?next=' + encodeURIComponent(next));
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
   <title>Works — Stock Photo Generator | RIKA YAMADA Portfolio</title>
@@ -125,19 +132,24 @@
 
     .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
     .stat-card { border-radius: 6px; padding: 1.5rem; text-align: center; }
-    .stat-card.dark { background: var(--brown); }
-    .stat-card.green { background: var(--sage); }
-    .stat-label-dark { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; text-transform: uppercase; }
-    .stat-label-green { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; text-transform: uppercase; }
-    .stat-num-red { font-size: 3rem; font-weight: 300; color: #f4a0a0; font-style: italic; line-height: 1; }
-    .stat-num-white { font-size: 3rem; font-weight: 300; color: #fff; font-style: italic; line-height: 1; }
+    .stat-card.dark { background: var(--cream); border: 0.5px solid var(--sage-pale); }
+    .stat-card.green { background: var(--sage-mist); border: 0.5px solid var(--sage-pale); }
+    .stat-label-dark { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--brown-light); margin-bottom: 0.5rem; text-transform: uppercase; }
+    .stat-label-green { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--sage); margin-bottom: 0.5rem; text-transform: uppercase; }
+    .stat-num-red { font-size: 3rem; font-weight: 300; color: #A32D2D; font-style: italic; line-height: 1; }
+    .stat-num-white { font-size: 3rem; font-weight: 300; color: var(--sage); font-style: italic; line-height: 1; }
 
     /* ロゴ */
-    .logo-display { display: flex; align-items: center; gap: 2rem; padding: 2rem; background: var(--brown); border-radius: 8px; margin: 2rem 0; }
+    .logo-display { display: flex; align-items: center; gap: 2rem; padding: 2rem; background: #fff; border-radius: 8px; margin: 2rem 0; }
     .logo-display img { height: 60px; width: auto; }
     .logo-display-ph { width: 60px; height: 60px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .logo-caption { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; color: rgba(255,255,255,0.5); line-height: 2; }
-    .logo-name-text { font-family: 'Noto Sans JP', sans-serif; font-size: 1rem; font-weight: 500; color: #fff; margin-bottom: 0.3rem; }
+    .logo-caption { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; color: var(--brown-mid); line-height: 2; }
+    .logo-name-text { font-family: 'Noto Sans JP', sans-serif; font-size: 1rem; font-weight: 500; color: var(--brown); margin-bottom: 0.3rem; }
+
+    /* Figma埋め込み */
+    .figma-embed { margin: 2rem 0 0; width: 100%; aspect-ratio: 4/3; }
+    .figma-embed iframe { width: 100%; height: 100%; border: 1px solid rgba(0, 0, 0, 0.1); display: block; }
+    .figma-caption { margin-bottom: 2rem; }
 
     /* 成果数値 */
     .outcome-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0; }
@@ -162,7 +174,7 @@
 <body>
 
   <nav>
-    <div class="nav-logo">Rika Yamada</div>
+    <a href="index.html" class="nav-logo">Rika Yamada</a>
     <ul class="nav-links">
       <li><a href="index.html#works">Works</a></li>
       <li><a href="index.html#skill">Skill</a></li>
@@ -212,7 +224,7 @@
       <!-- 課題定義 -->
       <div class="article-section-title">01 — 課題定義・カスタマージャーニー</div>
       <p class="article-text">
-        毎日10枚のイラストをAdobe Stockに投稿する作業において、タイトル・キーワード（最大49個）・カテゴリのメタデータ作成に1バッチあたり30〜40分かかっていた。1枚ずつAIに依頼し、コピペで登録する作業の繰り返しが大きな摩擦ポイントになっていた。
+        毎日10枚のイラストをAdobe Stockに投稿する作業において、タイトル・キーワード（最大49個）・カテゴリのメタデータ作成に1バッチあたり平均2.5時間かかっていた。1枚ずつAIに依頼し、コピペで登録する作業の繰り返しが大きな摩擦ポイントになっていた。
       </p>
 
       <div class="journey-wrap">
@@ -261,7 +273,7 @@
             <div class="phase-label">Stock Photo Generator 導入後</div>
             <span class="phase-badge badge-efficiency">High Efficiency</span>
           </div>
-          <div class="time-badge">⏱ 30〜40分 → 数分に短縮</div>
+          <div class="time-badge">⏱ 2.5時間 → 12分に短縮</div>
           <div class="cards-row">
             <div class="jcard neutral">
               <div class="jcard-step after">Flow 01</div>
@@ -311,14 +323,16 @@
       <p class="article-text">
         「今日の作業」「履歴一覧（Archives）」「セッション詳細」の3画面で完結するシンプルな情報設計を採用。サイドバーから過去セッションに素早くアクセスできる構造にした。
       </p>
-      <div style="margin:2rem 0;"><iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/dynfN3RNppkvi2RP4aDthw/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E7%94%A8?node-id=10-239&viewport=1029%2C93%2C0.15&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=10%3A239&page-id=0%3A1&embed-host=share" allowfullscreen></iframe></div>
+      <div class="figma-embed"><iframe src="https://embed.figma.com/proto/dynfN3RNppkvi2RP4aDthw/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E7%94%A8?node-id=10-239&viewport=1029%2C93%2C0.15&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=10%3A239&page-id=0%3A1&embed-host=share" allowfullscreen></iframe></div>
+      <p class="article-img-caption figma-caption">「＞」の矢印を押すと次の画面を見ることができます</p>
 
       <!-- UIデザイン -->
-      <div class="article-section-title">03 — ビジュアルデザイン</div>
+      <div class="article-section-title">03 — ビジュアルデザイン（ラフ）</div>
       <p class="article-text">
         Google Stitch（AI UIデザインツール）を活用して効率的にUIデザインを起こした。ダークナビゲーション・赤のアクセントカラー・Zen Kaku Gothic Newのタイポグラフィで、プロフェッショナルかつ使いやすい画面を設計した。
       </p>
-      <div style="margin:2rem 0;"><iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/dynfN3RNppkvi2RP4aDthw/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E7%94%A8?node-id=10-227&viewport=1029%2C-63%2C0.15&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=10%3A227&page-id=0%3A1&embed-host=share" allowfullscreen></iframe></div>
+      <div class="figma-embed"><iframe src="https://embed.figma.com/proto/dynfN3RNppkvi2RP4aDthw/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E7%94%A8?node-id=10-227&viewport=1029%2C-63%2C0.15&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=10%3A227&page-id=0%3A1&embed-host=share" allowfullscreen></iframe></div>
+      <p class="article-img-caption figma-caption">「＞」の矢印を押すと次の画面を見ることができます</p>
 
       <!-- テストと改善 -->
       <div class="article-section-title">04 — テストと改善</div>
@@ -355,7 +369,7 @@
         カメラ×AIをモチーフにしたロゴマークを制作。ナビゲーションバーとSTEPマーカーに使用し、サービスとしての一貫性を持たせた。
       </p>
       <div class="logo-display">
-        <img src="img/spg_logo.png" alt="Stock Photo Generator Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <img src="img/spg_logo2.png" alt="Stock Photo Generator Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="logo-display-ph" style="display:none;">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="white" stroke-width="2"/><path d="M16 8 L20 16 L16 24 L12 16 Z" fill="white"/></svg>
         </div>
@@ -368,10 +382,11 @@
       <!-- 本番・成果 -->
       <div class="article-section-title">06 — 実装・成果</div>
       <p class="article-text">
-        React + Vite + Anthropic Claude APIで実装。ローカル環境で実際の業務に使用しており、毎日の投稿作業を大幅に効率化した。
+        React + Vite + Anthropic Claude APIで実装。ローカル環境で実際の業務に使用しており、毎日の投稿作業を大幅に効率化した。2026年9月、UI+カラーをバージョンアップ。今後オンライン上で使用できるように、ログイン画面を追加。
       </p>
 
-<div style="margin:2rem 0;"><iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/dynfN3RNppkvi2RP4aDthw/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E7%94%A8?node-id=13-261&viewport=1029%2C-63%2C0.15&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=13%3A261&page-id=0%3A1&embed-host=share" allowfullscreen></iframe></div>
+<div class="figma-embed"><iframe src="https://embed.figma.com/proto/dynfN3RNppkvi2RP4aDthw/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E7%94%A8?node-id=13-261&viewport=1029%2C-63%2C0.15&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=13%3A261&page-id=0%3A1&embed-host=share" allowfullscreen></iframe></div>
+      <p class="article-img-caption figma-caption">「＞」の矢印を押すと次の画面を見ることができます</p>
 
       <div class="outcome-row">
         <div class="outcome-item">
@@ -423,7 +438,7 @@
           <div class="sidebar-info-item"><div class="sidebar-info-label">Role</div><div class="sidebar-info-value">UXデザイン / UIデザイン / フロントエンド実装</div></div>
           <div class="sidebar-info-item"><div class="sidebar-info-label">Target</div><div class="sidebar-info-value">Adobe Stockに投稿するイラストレーター</div></div>
           <div class="sidebar-info-item"><div class="sidebar-info-label">Goal</div><div class="sidebar-info-value">メタデータ作成の自動化・作業時間の削減</div></div>
-          <div class="sidebar-info-item"><div class="sidebar-info-label">Result</div><div class="sidebar-info-value">30〜40分 → 数分（約92%削減）</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Result</div><div class="sidebar-info-value">2.5時間 → 12分（約92%削減）</div></div>
         </div>
       </div>
       <div class="sidebar-section">
