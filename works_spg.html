@@ -16,14 +16,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --sage: #7a9e87; --sage-light: #a8c4b0; --sage-pale: #d4e5d8; --sage-mist: #eef4f0; --yellow: #e8d89a; --yellow-pale: #f5efc8; --yellow-mist: #faf7e8; --cream: #faf8f3; --brown: #4a3d2e; --brown-mid: #7a6555; --brown-light: #b8a090; --white: #ffffff; --text: #3a3028;
+    :root { --sage: #b06a2e; --sage-light: #d9a26a; --sage-pale: #efd9bf; --sage-mist: #f7eee2; --yellow: #e8d89a; --yellow-pale: #f5efc8; --yellow-mist: #faf7e8; --cream: #faf8f3; --brown: #4a3d2e; --brown-mid: #7a6555; --brown-light: #b8a090; --white: #ffffff; --text: #3a3028;
       --red: #a01010; --red-light: #fdf2f0;
     }
     html { scroll-behavior: smooth; }
     body { background: var(--cream); color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 300; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(250,248,243,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(168,196,176,0.3); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(250,248,243,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(217,162,106,0.3); }
     .nav-logo { font-style: italic; font-size: 1.1rem; letter-spacing: 0.2em; color: var(--brown); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brown-mid); position: relative; transition: color 0.3s; }
@@ -33,7 +33,7 @@
     .breadcrumb { margin-top: 72px; padding: 1rem 5rem; background: var(--white); border-bottom: 1px solid var(--sage-pale); display: flex; align-items: center; gap: 0.6rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); }
     .breadcrumb a { color: var(--sage); transition: opacity 0.2s; } .breadcrumb a:hover { opacity: 0.7; } .breadcrumb-sep { opacity: 0.4; }
 
-    .page-hero { background: var(--sage-mist); padding: 4rem 5rem 3rem; position: relative; overflow: hidden; }
+    .page-hero { background: #fbf8f3; padding: 4rem 5rem 3rem; position: relative; overflow: hidden; }
     .page-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .page-hero-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
     .page-hero-label::before { content: ''; width: 25px; height: 1px; background: var(--sage); }
@@ -42,7 +42,7 @@
     .page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; padding-bottom: 2rem; }
     .meta-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.3rem; }
     .meta-value { font-family: 'Noto Sans JP', sans-serif; font-size: 0.75rem; color: var(--brown-mid); }
-    .page-hero-visual { aspect-ratio: 4/3; background: var(--sage-pale); overflow: hidden; align-self: end; }
+    .page-hero-visual { aspect-ratio: 4/3; background: var(--sage-pale); overflow: hidden; align-self: end; border: 1px solid var(--sage-pale); }
     .page-hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .page-hero-visual-ph { width: 100%; height: 100%; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sage-mist) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 1rem; color: var(--sage-light); }
 
@@ -108,18 +108,19 @@
     .journey-phase { margin-bottom: 2rem; }
     .phase-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
     .phase-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Noto Sans JP', sans-serif; font-size: 10px; font-weight: 700; flex-shrink: 0; }
-    .phase-num.before { background: var(--brown); color: #fff; }
+    .phase-num.before { background: #A32D2D; color: #fff; }
     .phase-num.after { background: var(--sage); color: #fff; }
     .phase-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; font-weight: 500; color: var(--brown); }
     .phase-badge { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; font-weight: 500; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 2px; text-transform: uppercase; }
-    .badge-friction { background: #FCEBEB; color: #A32D2D; border: 0.5px solid #F09595; }
+    .badge-friction { background: #FCEBEB; color: #A32D2D; border: 0.5px solid #F6C4C4; }
     .badge-efficiency { background: var(--sage-mist); color: var(--sage); border: 0.5px solid var(--sage-pale); }
     .cards-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
     .jcard { border-radius: 4px; padding: 10px 12px; border: 0.5px solid; }
-    .jcard.before { background: #FCEBEB; border-color: #F09595; }
+    .jcard.before { background: #FCEBEB; border-color: #F6C4C4; }
+    .jcard.before.first { background: #fff; }
     .jcard.after { background: var(--sage-mist); border-color: var(--sage-pale); }
-    .jcard.neutral { background: var(--cream); border-color: var(--sage-pale); }
-    .jcard.highlight { background: var(--sage-mist); border: 1.5px solid var(--sage); }
+    .jcard.neutral { background: #fff; border-color: var(--sage-pale); }
+    .jcard.highlight { background: var(--sage-mist); border-color: var(--sage-pale); }
     .jcard-step { font-family: 'Noto Sans JP', sans-serif; font-size: 9px; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 4px; }
     .jcard-step.before { color: #A32D2D; }
     .jcard-step.after { color: var(--sage); }
@@ -132,7 +133,7 @@
 
     .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
     .stat-card { border-radius: 6px; padding: 1.5rem; text-align: center; }
-    .stat-card.dark { background: var(--cream); border: 0.5px solid var(--sage-pale); }
+    .stat-card.dark { background: #FCEBEB; border: 0.5px solid #F6C4C4; }
     .stat-card.green { background: var(--sage-mist); border: 0.5px solid var(--sage-pale); }
     .stat-label-dark { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--brown-light); margin-bottom: 0.5rem; text-transform: uppercase; }
     .stat-label-green { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--sage); margin-bottom: 0.5rem; text-transform: uppercase; }
@@ -235,7 +236,7 @@
             <span class="phase-badge badge-friction">Friction Heavy</span>
           </div>
           <div class="cards-row">
-            <div class="jcard before">
+            <div class="jcard before first">
               <div class="jcard-step before">Step 01</div>
               <div class="jcard-title">イラスト制作</div>
               <div class="jcard-desc">1枚ずつ完成</div>
