@@ -259,12 +259,16 @@
 
   <script>
     // ===== パスワードをここで設定 =====
-    const PASSWORD = '260001';
+    const PASSWORD = '2600yy';
     // ==================================
 
-    // すでにログイン済みならそのままトップへ
+    // ログイン後の移動先（作品ページから来た場合はそのページへ戻る）
+    const nextParam = new URLSearchParams(location.search).get('next') || '';
+    const NEXT = /^[\w-]+(\.html)?(#[\w-]*)?$/.test(nextParam) ? nextParam : 'index.html';
+
+    // すでにログイン済みならそのまま移動
     if (sessionStorage.getItem('auth') === 'ok') {
-      location.href = 'index.html';
+      location.replace(NEXT);
     }
 
     function checkPassword() {
@@ -273,7 +277,7 @@
 
       if (input === PASSWORD) {
         sessionStorage.setItem('auth', 'ok');
-        location.href = 'index.html';
+        location.replace(NEXT);
       } else {
         error.classList.add('show');
         document.getElementById('passwordInput').value = '';

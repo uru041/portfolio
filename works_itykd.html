@@ -2,6 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // 認証チェック（未ログインならパスワード画面へ。入力後にこのページへ戻る）
+    if (sessionStorage.getItem('auth') !== 'ok') {
+      var next = location.pathname.split('/').pop() + location.hash;
+      location.replace('gate.html?next=' + encodeURIComponent(next));
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
   <title>Works — RIKA YAMADA Portfolio</title>
@@ -51,6 +58,12 @@
     .img-grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .banner-showcase { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
     .banner-showcase img { width: 100%; height: auto; display: block; border-radius: 4px; }
+    .zoomable img { cursor: zoom-in; transition: opacity 0.3s; }
+    .zoomable img:hover { opacity: 0.85; }
+    .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(58,48,40,0.85); display: none; align-items: center; justify-content: center; padding: 2rem; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .lightbox-close { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; color: #fff; font-size: 2rem; line-height: 1; cursor: pointer; }
     .process-block { background: var(--sage-mist); border-radius: 8px; padding: 2rem; margin: 2.5rem 0; border-left: 3px solid var(--sage); }
     .process-block-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
     .process-block-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem; line-height: 2.2; color: var(--brown-mid); }
@@ -111,7 +124,7 @@
 </head>
 <body>
   <nav>
-    <div class="nav-logo">Rika Yamada</div>
+    <a href="index.html" class="nav-logo">Rika Yamada</a>
     <ul class="nav-links">
       <li><a href="index.html#works">Works</a></li>
       <li><a href="index.html#skill">Skill</a></li>
@@ -180,7 +193,7 @@
       <div class="article-section-title">バナーデザイン</div>
       <p class="article-text">LPと連動した各種バナーを制作。サイズ・目的ごとに訴求軸を変えながら、クリック率の向上を意識した設計にしました。</p>
 
-      <div class="banner-showcase">
+      <div class="banner-showcase zoomable">
         <img src="img/works_itykd.jpg" alt="イトーヨーカドー バナー">
         <img src="img/itoyokado_2024_china_s.jpg" alt="中華街フェア バナー" style="width:40%;">
         <img src="img/ity_gw1.png" alt="GW特集 バナー">
@@ -234,5 +247,24 @@
     <div class="footer-logo">Rika Yamada</div>
     <p class="footer-copy">© Rika Yamada. All rights reserved.</p>
   </footer>
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="閉じる">×</button>
+    <img src="" alt="">
+  </div>
+  <script>
+    (function () {
+      var box = document.getElementById('lightbox');
+      var boxImg = box.querySelector('img');
+      function close() { box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+      document.querySelectorAll('.zoomable img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          boxImg.src = img.src; boxImg.alt = img.alt;
+          box.classList.add('open'); box.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+        });
+      });
+      box.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
 </html>
