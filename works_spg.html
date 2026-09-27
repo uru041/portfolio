@@ -228,7 +228,7 @@
       <!-- 課題定義 -->
       <div class="article-section-title">01 — 課題定義・カスタマージャーニー</div>
       <p class="article-text">
-        毎日10枚のイラストをAdobe Stockに投稿する作業において、タイトル・キーワード（最大49個）・カテゴリのメタデータ作成に1バッチあたり平均2.5時間かかっていた。1枚ずつAIに依頼し、コピペで登録する作業の繰り返しが大きな摩擦ポイントになっていた。
+        毎回10数枚まとめてイラストをAdobe Stockに投稿する作業において、タイトル・キーワード（最大49個）・カテゴリのメタデータ作成に1バッチあたり平均20分かかっていた。1枚ずつAIに依頼し、コピペで登録する作業の繰り返しが大きな摩擦ポイントになっていた。
       </p>
 
       <div class="journey-wrap">
@@ -242,7 +242,6 @@
             <div class="jcard before first">
               <div class="jcard-step before">Step 01</div>
               <div class="jcard-title">イラスト制作</div>
-              <div class="jcard-desc">1枚ずつ完成</div>
             </div>
             <div class="jcard before">
               <div class="jcard-step before">Step 02</div>
@@ -277,12 +276,11 @@
             <div class="phase-label">Stock Photo Generator 導入後</div>
             <span class="phase-badge badge-efficiency">High Efficiency</span>
           </div>
-          <div class="time-badge">⏱ 2.5時間 → 12分に短縮</div>
+          <div class="time-badge">⏱ 20分 → 2分に短縮</div>
           <div class="cards-row">
             <div class="jcard neutral">
               <div class="jcard-step after">Flow 01</div>
               <div class="jcard-title">イラスト制作</div>
-              <div class="jcard-desc">複数枚まとめて完成</div>
             </div>
             <div class="jcard after">
               <div class="jcard-step after">Flow 02</div>
@@ -313,11 +311,11 @@
         <div class="stats-row">
           <div class="stat-card dark">
             <div class="stat-label-dark">Before (avg/batch)</div>
-            <div class="stat-num-red">2.5<span style="font-size:1.2rem">h</span></div>
+            <div class="stat-num-red">20<span style="font-size:1.2rem">m</span></div>
           </div>
           <div class="stat-card green">
             <div class="stat-label-green">After (avg/batch)</div>
-            <div class="stat-num-white">12<span style="font-size:1.2rem">m</span></div>
+            <div class="stat-num-white">2<span style="font-size:1.2rem">m</span></div>
           </div>
         </div>
       </div>
@@ -386,7 +384,7 @@
       <!-- 本番・成果 -->
       <div class="article-section-title">06 — 実装・成果</div>
       <p class="article-text">
-        React + Vite + Anthropic Claude APIで実装。ローカル環境で実際の業務に使用しており、毎日の投稿作業を大幅に効率化した。2026年9月、UI+カラーをバージョンアップ。今後オンライン上で使用できるように、ログイン画面を追加。
+        React + Vite + Anthropic Claude APIで実装。ローカル環境で実際の業務に使用しており、日々の投稿作業を大幅に効率化した。2026年9月、UI+カラーをバージョンアップ。今後オンライン上で使用できるように、ログイン画面を追加。
       </p>
 
 <div class="figma-embed"><iframe src="https://embed.figma.com/proto/dynfN3RNppkvi2RP4aDthw/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E7%94%A8?node-id=13-261&viewport=1029%2C-63%2C0.15&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=13%3A261&page-id=0%3A1&embed-host=share" allowfullscreen></iframe></div>
@@ -395,7 +393,7 @@
       <div class="outcome-row">
         <div class="outcome-item">
           <div class="outcome-label">時間削減</div>
-          <div class="outcome-value">92<span style="font-size:1rem">%</span></div>
+          <div class="outcome-value">90<span style="font-size:1rem">%</span></div>
           <div class="outcome-unit">time saved</div>
         </div>
         <div class="outcome-item">
@@ -407,9 +405,9 @@
           <div class="outcome-value" style="font-size:1rem;">Adobe<br>Stock CSV</div>
         </div>
         <div class="outcome-item">
-          <div class="outcome-label">月間コスト</div>
-          <div class="outcome-value">〜300<span style="font-size:1rem">円</span></div>
-          <div class="outcome-unit">10枚/日 × 30日</div>
+          <div class="outcome-label">APIコスト</div>
+          <div class="outcome-value">〜1<span style="font-size:1rem">円</span></div>
+          <div class="outcome-unit">1枚あたり</div>
         </div>
       </div>
 
@@ -442,7 +440,7 @@
           <div class="sidebar-info-item"><div class="sidebar-info-label">Role</div><div class="sidebar-info-value">UXデザイン / UIデザイン / フロントエンド実装</div></div>
           <div class="sidebar-info-item"><div class="sidebar-info-label">Target</div><div class="sidebar-info-value">Adobe Stockに投稿するイラストレーター</div></div>
           <div class="sidebar-info-item"><div class="sidebar-info-label">Goal</div><div class="sidebar-info-value">メタデータ作成の自動化・作業時間の削減</div></div>
-          <div class="sidebar-info-item"><div class="sidebar-info-label">Result</div><div class="sidebar-info-value">2.5時間 → 12分（約92%削減）</div></div>
+          <div class="sidebar-info-item"><div class="sidebar-info-label">Result</div><div class="sidebar-info-value">20分 → 2分（約90%削減）</div></div>
         </div>
       </div>
       <div class="sidebar-section">
