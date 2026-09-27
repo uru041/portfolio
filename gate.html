@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-season="autumn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +11,6 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --sage: #b06a2e;
-      --sage-pale: #efd9bf;
-      --sage-mist: #f7eee2;
       --yellow-pale: #f5efc8;
       --cream: #faf8f3;
       --brown: #4a3d2e;
@@ -21,6 +18,9 @@
       --brown-light: #b8a090;
       --white: #ffffff;
     }
+    /* 季節ごとの色：<html data-season="..."> の値で切り替わる */
+    html[data-season="summer"] { --accent: #7a9e87; --accent-light: #a8c4b0; --accent-pale: #d4e5d8; --accent-mist: #eef4f0; --accent-rgb: 122,158,135; --accent-light-rgb: 168,196,176; --btn-hover: #8fb09c; --glow: rgba(212,229,216,0.4); }
+    html[data-season="autumn"] { --accent: #b06a2e; --accent-light: #d9a26a; --accent-pale: #efd9bf; --accent-mist: #f7eee2; --accent-rgb: 176,106,46; --accent-light-rgb: 217,162,106; --btn-hover: #c47f45; --glow: rgba(239,217,191,0.5); }
 
     body {
       min-height: 100vh;
@@ -41,7 +41,7 @@
       right: -10%;
       width: 500px; height: 500px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(239,217,191,0.5) 0%, transparent 70%);
+      background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -85,13 +85,13 @@
       font-size: 0.58rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--sage);
+      color: var(--accent);
     }
 
     /* カード */
     .gate-card {
       background: var(--white);
-      border: 1px solid var(--sage-pale);
+      border: 1px solid var(--accent-pale);
       border-radius: 12px;
       padding: 2.5rem;
       box-shadow: 0 20px 60px rgba(74,61,46,0.08);
@@ -129,8 +129,8 @@
 
     .gate-input {
       width: 100%;
-      background: var(--sage-mist);
-      border: 1px solid var(--sage-pale);
+      background: var(--accent-mist);
+      border: 1px solid var(--accent-pale);
       border-radius: 8px;
       padding: 0.9rem 1.2rem;
       font-family: 'Noto Sans JP', sans-serif;
@@ -143,13 +143,13 @@
     }
 
     .gate-input:focus {
-      border-color: var(--sage);
-      box-shadow: 0 0 0 3px rgba(176,106,46,0.12);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb),0.12);
     }
 
     .gate-btn {
       width: 100%;
-      background: var(--sage);
+      background: var(--accent);
       color: var(--white);
       border: none;
       border-radius: 30px;
@@ -163,9 +163,9 @@
     }
 
     .gate-btn:hover {
-      background: #c47f45;
+      background: var(--btn-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(176,106,46,0.25);
+      box-shadow: 0 8px 20px rgba(var(--accent-rgb),0.25);
     }
 
     /* エラーメッセージ */
@@ -194,11 +194,11 @@
     .gate-deco-line {
       flex: 1;
       height: 1px;
-      background: var(--sage-pale);
+      background: var(--accent-pale);
     }
 
     .gate-deco-icon {
-      color: var(--sage-pale);
+      color: var(--accent-pale);
       font-size: 0.8rem;
     }
 

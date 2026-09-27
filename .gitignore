@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+
+# 作業用ファイル（Photoshop など）
+*.psd
+date/

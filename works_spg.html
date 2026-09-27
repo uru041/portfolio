@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-season="autumn">
 <head>
   <meta charset="UTF-8">
   <script>
@@ -16,68 +16,71 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --sage: #b06a2e; --sage-light: #d9a26a; --sage-pale: #efd9bf; --sage-mist: #f7eee2; --yellow: #e8d89a; --yellow-pale: #f5efc8; --yellow-mist: #faf7e8; --cream: #faf8f3; --brown: #4a3d2e; --brown-mid: #7a6555; --brown-light: #b8a090; --white: #ffffff; --text: #3a3028;
+    :root { --yellow: #e8d89a; --yellow-pale: #f5efc8; --yellow-mist: #faf7e8; --cream: #faf8f3; --brown: #4a3d2e; --brown-mid: #7a6555; --brown-light: #b8a090; --white: #ffffff; --text: #3a3028;
       --red: #a01010; --red-light: #fdf2f0;
     }
+    /* 季節ごとの色：<html data-season="..."> の値で切り替わる */
+    html[data-season="summer"] { --accent: #7a9e87; --accent-light: #a8c4b0; --accent-pale: #d4e5d8; --accent-mist: #eef4f0; --accent-rgb: 122,158,135; --accent-light-rgb: 168,196,176; --hero-bg: #eef4f0; }
+    html[data-season="autumn"] { --accent: #b06a2e; --accent-light: #d9a26a; --accent-pale: #efd9bf; --accent-mist: #f7eee2; --accent-rgb: 176,106,46; --accent-light-rgb: 217,162,106; --hero-bg: #fbf8f3; }
     html { scroll-behavior: smooth; }
     body { background: var(--cream); color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 300; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(250,248,243,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(217,162,106,0.3); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(250,248,243,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(var(--accent-light-rgb),0.3); }
     .nav-logo { font-style: italic; font-size: 1.1rem; letter-spacing: 0.2em; color: var(--brown); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brown-mid); position: relative; transition: color 0.3s; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--sage); transition: width 0.3s; }
-    .nav-links a:hover { color: var(--sage); } .nav-links a:hover::after { width: 100%; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s; }
+    .nav-links a:hover { color: var(--accent); } .nav-links a:hover::after { width: 100%; }
 
-    .breadcrumb { margin-top: 72px; padding: 1rem 5rem; background: var(--white); border-bottom: 1px solid var(--sage-pale); display: flex; align-items: center; gap: 0.6rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); }
-    .breadcrumb a { color: var(--sage); transition: opacity 0.2s; } .breadcrumb a:hover { opacity: 0.7; } .breadcrumb-sep { opacity: 0.4; }
+    .breadcrumb { margin-top: 72px; padding: 1rem 5rem; background: var(--white); border-bottom: 1px solid var(--accent-pale); display: flex; align-items: center; gap: 0.6rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); }
+    .breadcrumb a { color: var(--accent); transition: opacity 0.2s; } .breadcrumb a:hover { opacity: 0.7; } .breadcrumb-sep { opacity: 0.4; }
 
-    .page-hero { background: #fbf8f3; padding: 4rem 5rem 3rem; position: relative; overflow: hidden; }
+    .page-hero { background: var(--hero-bg); padding: 4rem 5rem 3rem; position: relative; overflow: hidden; }
     .page-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .page-hero-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sage); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
-    .page-hero-label::before { content: ''; width: 25px; height: 1px; background: var(--sage); }
+    .page-hero-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .page-hero-label::before { content: ''; width: 25px; height: 1px; background: var(--accent); }
     .page-hero-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--brown); line-height: 1.2; margin-bottom: 1rem; }
-    .page-hero-title em { font-style: italic; color: var(--sage); }
+    .page-hero-title em { font-style: italic; color: var(--accent); }
     .page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; padding-bottom: 2rem; }
-    .meta-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.3rem; }
+    .meta-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
     .meta-value { font-family: 'Noto Sans JP', sans-serif; font-size: 0.75rem; color: var(--brown-mid); }
-    .page-hero-visual { aspect-ratio: 4/3; background: var(--sage-pale); overflow: hidden; align-self: end; border: 1px solid var(--sage-pale); }
+    .page-hero-visual { aspect-ratio: 4/3; background: var(--accent-pale); overflow: hidden; align-self: end; border: 1px solid var(--accent-pale); }
     .page-hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .page-hero-visual-ph { width: 100%; height: 100%; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--sage-mist) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 1rem; color: var(--sage-light); }
+    .page-hero-visual-ph { width: 100%; height: 100%; background: linear-gradient(135deg, var(--accent-pale) 0%, var(--accent-mist) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 1rem; color: var(--accent-light); }
 
     .hero-wave { overflow: hidden; line-height: 0; margin-top: -1px; }
     .hero-wave svg { display: block; width: 100%; }
 
     .article-layout { display: grid; grid-template-columns: 1fr 280px; gap: 4rem; padding: 5rem 5rem; max-width: 1200px; margin: 0 auto; }
-    .article-lead { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 300; line-height: 1.8; color: var(--brown); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--sage-pale); }
+    .article-lead { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 300; line-height: 1.8; color: var(--brown); margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--accent-pale); }
     .article-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.82rem; line-height: 2.3; color: var(--brown-mid); margin-bottom: 1.5rem; }
     .article-img { margin: 2.5rem 0; border-radius: 4px; overflow: hidden; }
     .article-img img { width: 100%; display: block; }
-    .article-img-ph { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--sage-pale) 0%, var(--yellow-pale) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; color: var(--sage-light); font-size: 0.9rem; }
+    .article-img-ph { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--accent-pale) 0%, var(--yellow-pale) 100%); display: flex; align-items: center; justify-content: center; font-style: italic; color: var(--accent-light); font-size: 0.9rem; }
     .article-img-caption { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--brown-light); margin-top: 0.5rem; letter-spacing: 0.05em; }
-    .article-section-title { font-size: 1.4rem; font-style: italic; color: var(--brown); margin: 3rem 0 1rem; padding-left: 1rem; border-left: 2px solid var(--sage); }
-    .process-block { background: var(--sage-mist); border-radius: 8px; padding: 2rem; margin: 2.5rem 0; border-left: 3px solid var(--sage); }
-    .process-block-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+    .article-section-title { font-size: 1.4rem; font-style: italic; color: var(--brown); margin: 3rem 0 1rem; padding-left: 1rem; border-left: 2px solid var(--accent); }
+    .process-block { background: var(--accent-mist); border-radius: 8px; padding: 2rem; margin: 2.5rem 0; border-left: 3px solid var(--accent); }
+    .process-block-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
     .process-block-text { font-family: 'Noto Sans JP', sans-serif; font-size: 0.8rem; line-height: 2.2; color: var(--brown-mid); }
 
-    .article-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--sage-pale); }
-    .article-nav-item { padding: 1.5rem; border: 1px solid var(--sage-pale); border-radius: 4px; transition: all 0.3s; cursor: pointer; }
-    .article-nav-item:hover { border-color: var(--sage); background: var(--sage-mist); }
-    .article-nav-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+    .article-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--accent-pale); }
+    .article-nav-item { padding: 1.5rem; border: 1px solid var(--accent-pale); border-radius: 4px; transition: all 0.3s; cursor: pointer; }
+    .article-nav-item:hover { border-color: var(--accent); background: var(--accent-mist); }
+    .article-nav-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
     .article-nav-title { font-size: 0.95rem; color: var(--brown); line-height: 1.4; }
     .article-nav-item.next { text-align: right; }
 
     .article-sidebar {}
     .sidebar-section { margin-bottom: 2.5rem; }
-    .sidebar-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--sage-pale); }
+    .sidebar-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--accent-pale); }
     .sidebar-info-list { display: flex; flex-direction: column; gap: 1rem; }
     .sidebar-info-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.58rem; letter-spacing: 0.15em; color: var(--brown-light); margin-bottom: 0.2rem; }
     .sidebar-info-value { font-family: 'Noto Sans JP', sans-serif; font-size: 0.78rem; color: var(--brown-mid); line-height: 1.7; }
     .sidebar-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .sidebar-tag { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.05em; color: var(--sage); border: 1px solid var(--sage-pale); padding: 0.3rem 0.8rem; border-radius: 20px; background: var(--sage-mist); }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; color: var(--brown-mid); border: 1px solid var(--sage-pale); padding: 0.65rem 1.5rem; border-radius: 20px; transition: all 0.3s; margin-top: 1rem; }
-    .back-btn:hover { border-color: var(--sage); color: var(--sage); background: var(--sage-mist); }
+    .sidebar-tag { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.05em; color: var(--accent); border: 1px solid var(--accent-pale); padding: 0.3rem 0.8rem; border-radius: 20px; background: var(--accent-mist); }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Noto Sans JP', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; color: var(--brown-mid); border: 1px solid var(--accent-pale); padding: 0.65rem 1.5rem; border-radius: 20px; transition: all 0.3s; margin-top: 1rem; }
+    .back-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-mist); }
 
     footer { background: var(--brown); padding: 2.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
     .footer-logo { font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; }
@@ -85,60 +88,60 @@
 
     /* スクリーングリッド */
     .screens-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin: 2rem 0; }
-    .screen-card { border-radius: 6px; overflow: hidden; border: 1px solid var(--sage-pale); }
-    .screen-img { width: 100%; aspect-ratio: 16/10; background: var(--sage-pale); overflow: hidden; }
+    .screen-card { border-radius: 6px; overflow: hidden; border: 1px solid var(--accent-pale); }
+    .screen-img { width: 100%; aspect-ratio: 16/10; background: var(--accent-pale); overflow: hidden; }
     .screen-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .screen-img-ph { width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); display: flex; align-items: center; justify-content: center; }
-    .screen-info { padding: 0.8rem 1rem; border-top: 1px solid var(--sage-pale); background: var(--white); }
-    .screen-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.15em; color: var(--sage); text-transform: uppercase; margin-bottom: 0.2rem; }
+    .screen-info { padding: 0.8rem 1rem; border-top: 1px solid var(--accent-pale); background: var(--white); }
+    .screen-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.2rem; }
     .screen-name { font-family: 'Noto Sans JP', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--brown); margin-bottom: 0.3rem; }
     .screen-note { font-family: 'Noto Sans JP', sans-serif; font-size: 0.68rem; color: var(--brown-light); line-height: 1.7; }
 
     /* テストカード */
     .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin: 2rem 0; }
-    .test-card { background: var(--sage-mist); border-radius: 6px; padding: 1.5rem; border: 1px solid var(--sage-pale); }
-    .test-num { font-size: 2rem; font-weight: 300; color: var(--sage); margin-bottom: 0.5rem; font-style: italic; }
+    .test-card { background: var(--accent-mist); border-radius: 6px; padding: 1.5rem; border: 1px solid var(--accent-pale); }
+    .test-num { font-size: 2rem; font-weight: 300; color: var(--accent); margin-bottom: 0.5rem; font-style: italic; }
     .test-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--brown); margin-bottom: 0.6rem; }
     .test-prob { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; color: var(--brown-mid); line-height: 1.9; margin-bottom: 0.8rem; }
-    .test-arrow { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--sage); margin-bottom: 0.4rem; }
-    .test-fix { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; font-weight: 500; color: var(--sage); line-height: 1.8; }
+    .test-arrow { font-family: 'Noto Sans JP', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.4rem; }
+    .test-fix { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; font-weight: 500; color: var(--accent); line-height: 1.8; }
 
     /* カスタマージャーニー */
-    .journey-wrap { background: var(--white); border-radius: 8px; padding: 2rem; border: 1px solid var(--sage-pale); margin: 2rem 0; }
+    .journey-wrap { background: var(--white); border-radius: 8px; padding: 2rem; border: 1px solid var(--accent-pale); margin: 2rem 0; }
     .journey-phase { margin-bottom: 2rem; }
     .phase-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
     .phase-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Noto Sans JP', sans-serif; font-size: 10px; font-weight: 700; flex-shrink: 0; }
     .phase-num.before { background: #A32D2D; color: #fff; }
-    .phase-num.after { background: var(--sage); color: #fff; }
+    .phase-num.after { background: var(--accent); color: #fff; }
     .phase-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.72rem; font-weight: 500; color: var(--brown); }
     .phase-badge { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; font-weight: 500; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 2px; text-transform: uppercase; }
     .badge-friction { background: #FCEBEB; color: #A32D2D; border: 0.5px solid #F6C4C4; }
-    .badge-efficiency { background: var(--sage-mist); color: var(--sage); border: 0.5px solid var(--sage-pale); }
+    .badge-efficiency { background: var(--accent-mist); color: var(--accent); border: 0.5px solid var(--accent-pale); }
     .cards-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
     .jcard { border-radius: 4px; padding: 10px 12px; border: 0.5px solid; }
     .jcard.before { background: #FCEBEB; border-color: #F6C4C4; }
     .jcard.before.first { background: #fff; }
-    .jcard.after { background: var(--sage-mist); border-color: var(--sage-pale); }
-    .jcard.neutral { background: #fff; border-color: var(--sage-pale); }
-    .jcard.highlight { background: var(--sage-mist); border-color: var(--sage-pale); }
+    .jcard.after { background: var(--accent-mist); border-color: var(--accent-pale); }
+    .jcard.neutral { background: #fff; border-color: var(--accent-pale); }
+    .jcard.highlight { background: var(--accent-mist); border-color: var(--accent-pale); }
     .jcard-step { font-family: 'Noto Sans JP', sans-serif; font-size: 9px; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 4px; }
     .jcard-step.before { color: #A32D2D; }
-    .jcard-step.after { color: var(--sage); }
+    .jcard-step.after { color: var(--accent); }
     .jcard-title { font-family: 'Noto Sans JP', sans-serif; font-size: 0.7rem; font-weight: 500; line-height: 1.4; margin-bottom: 4px; color: var(--brown); }
     .jcard-desc { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; color: var(--brown-mid); line-height: 1.6; margin-bottom: 4px; }
     .jcard-pain { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; font-weight: 500; color: #A32D2D; line-height: 1.5; }
-    .jcard-gain { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; font-weight: 500; color: var(--sage); line-height: 1.5; }
-    .journey-divider { border: none; border-top: 1px solid var(--sage-pale); margin: 1.5rem 0; }
-    .time-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--sage-mist); border: 0.5px solid var(--sage-pale); border-radius: 3px; padding: 4px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--sage); margin-bottom: 1rem; }
+    .jcard-gain { font-family: 'Noto Sans JP', sans-serif; font-size: 0.62rem; font-weight: 500; color: var(--accent); line-height: 1.5; }
+    .journey-divider { border: none; border-top: 1px solid var(--accent-pale); margin: 1.5rem 0; }
+    .time-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-mist); border: 0.5px solid var(--accent-pale); border-radius: 3px; padding: 4px 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.65rem; color: var(--accent); margin-bottom: 1rem; }
 
     .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
     .stat-card { border-radius: 6px; padding: 1.5rem; text-align: center; }
     .stat-card.dark { background: #FCEBEB; border: 0.5px solid #F6C4C4; }
-    .stat-card.green { background: var(--sage-mist); border: 0.5px solid var(--sage-pale); }
+    .stat-card.green { background: var(--accent-mist); border: 0.5px solid var(--accent-pale); }
     .stat-label-dark { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--brown-light); margin-bottom: 0.5rem; text-transform: uppercase; }
-    .stat-label-green { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--sage); margin-bottom: 0.5rem; text-transform: uppercase; }
+    .stat-label-green { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase; }
     .stat-num-red { font-size: 3rem; font-weight: 300; color: #A32D2D; font-style: italic; line-height: 1; }
-    .stat-num-white { font-size: 3rem; font-weight: 300; color: var(--sage); font-style: italic; line-height: 1; }
+    .stat-num-white { font-size: 3rem; font-weight: 300; color: var(--accent); font-style: italic; line-height: 1; }
 
     /* ロゴ */
     .logo-display { display: flex; align-items: center; gap: 2rem; padding: 2rem; background: #fff; border-radius: 8px; margin: 2rem 0; }
@@ -154,8 +157,8 @@
 
     /* 成果数値 */
     .outcome-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0; }
-    .outcome-item { background: var(--sage-mist); border-radius: 6px; padding: 1.2rem; text-align: center; border: 1px solid var(--sage-pale); }
-    .outcome-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--sage); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .outcome-item { background: var(--accent-mist); border-radius: 6px; padding: 1.2rem; text-align: center; border: 1px solid var(--accent-pale); }
+    .outcome-label { font-family: 'Noto Sans JP', sans-serif; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
     .outcome-value { font-size: 1.6rem; font-weight: 300; color: var(--brown); line-height: 1.2; }
     .outcome-unit { font-family: 'Noto Sans JP', sans-serif; font-size: 0.7rem; color: var(--brown-mid); }
 
