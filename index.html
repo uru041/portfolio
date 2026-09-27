@@ -2,6 +2,17 @@
 <html lang="ja" data-season="autumn">
 <head>
   <meta charset="UTF-8">
+  <script>
+    // 季節の決定：URLの ?season= → 前回選んだ季節 → 今日の月（6〜8月は夏、それ以外は秋）
+    (function () {
+      var S = ['summer', 'autumn'], s = null;
+      try { s = localStorage.getItem('season'); } catch (e) {}
+      var q = new URLSearchParams(location.search).get('season');
+      if (S.indexOf(q) >= 0) s = q;
+      if (S.indexOf(s) < 0) { var m = new Date().getMonth() + 1; s = (m >= 6 && m <= 8) ? 'summer' : 'autumn'; }
+      document.documentElement.setAttribute('data-season', s);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex">
   <title>RIKA YAMADA — Web Designer Portfolio</title>
@@ -158,8 +169,20 @@
 
     .fade-in { opacity: 1; transform: translateY(0); }
 
+    /* 季節の切り替え：その季節の画像だけ表示 */
+    html[data-season="summer"] .season-autumn, html[data-season="autumn"] .season-summer { display: none !important; }
+    html[data-season="summer"] .hero-leaves { display: none; }
+    .hero-illust-wrap { transition: opacity 0.3s; }
+    html.season-switching .hero-illust-wrap { opacity: 0; }
+    .season-switch { position: absolute; right: 1.5rem; bottom: 1.5rem; z-index: 5; display: flex; gap: 0.6rem; }
+    .season-btn { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid transparent; background: rgba(255,255,255,0.9); box-shadow: 0 2px 8px rgba(74,61,46,0.12); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; transition: transform 0.2s, border-color 0.3s, box-shadow 0.3s; }
+    .season-btn:hover { transform: translateY(-2px); }
+    .season-btn img { width: 28px; height: 28px; object-fit: contain; }
+    .season-btn[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-pale); }
+
     /* メインの絵：舞う落ち葉 */
     .hero-leaves { position: absolute; inset: 0; pointer-events: none; }
+    .hero-leaves-left { z-index: -1; overflow: hidden; }
     .hero-leaf-fall { position: absolute; opacity: 0; animation: heroLeafFall linear infinite; }
     .hero-leaf-sway { animation: heroLeafSway ease-in-out infinite alternate; }
     .hero-leaf-sway img { display: block; width: var(--size); height: auto; }
@@ -167,7 +190,7 @@
       0%   { transform: translate(0, 0); opacity: 0; }
       10%  { opacity: 1; }
       80%  { opacity: 1; }
-      100% { transform: translate(var(--drift), calc(var(--box-h, 0px) * (0.85 - var(--top-f)))); opacity: 0; }
+      100% { transform: translate(var(--drift), calc(var(--box-h, 0px) * (var(--end-f, 0.85) - var(--top-f)))); opacity: 0; }
     }
     @keyframes heroLeafSway {
       from { transform: translateX(calc(var(--sway) * -1)) rotate(var(--r1)); }
@@ -211,6 +234,7 @@
   <!-- ヒーロー -->
   <section class="hero">
     <div class="hero-left">
+      <div class="hero-leaves hero-leaves-left" id="heroLeavesLeft" aria-hidden="true"></div>
       <div class="hero-eyebrow">Web Designer × Illustrator</div>
       <h1 class="hero-name">Rika<br><em>Yamada</em></h1>
       <div class="hero-subtitle">PORTFOLIO</div>
@@ -223,8 +247,12 @@
     <div class="hero-right">
       <div class="hero-deco-circle hero-deco-c1"></div>
       <div class="hero-deco-circle hero-deco-c2"></div>
+      <div class="season-switch" role="group" aria-label="季節の切り替え">
+        <button class="season-btn" type="button" data-season="summer" aria-label="夏のイラストに切り替え" title="Summer"><img src="img/season/summer/icon2.png" alt=""></button>
+        <button class="season-btn" type="button" data-season="autumn" aria-label="秋のイラストに切り替え" title="Autumn"><img src="img/season/autumn/ico_au7.png" alt=""></button>
+      </div>
       <div class="hero-illust-wrap" style="border-radius:0; background:transparent; border:none; width:85%; aspect-ratio:auto;">
-        <img src="img/season/autumn/main.png" alt="" style="width:100%; height:100%; object-fit:contain;">
+        <img class="season-summer" loading="lazy" src="img/season/summer/main.png" alt="" style="width:100%; height:100%; object-fit:contain;"><img class="season-autumn" loading="lazy" src="img/season/autumn/main.png" alt="" style="width:100%; height:100%; object-fit:contain;">
         <div class="hero-leaves" id="heroLeaves" aria-hidden="true"></div>
       </div>
     </div>
@@ -233,16 +261,16 @@
   <!-- ティッカー -->
   <div class="ticker">
     <div class="ticker-inner">
-      <span class="ticker-item">LP Design</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">Banner Design</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">EC Design</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">HTML / CSS Coding</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">Illustration</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">LP Design</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">Banner Design</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">EC Design</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">HTML / CSS Coding</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
-      <span class="ticker-item">Illustration</span><span class="ticker-item ticker-sep"><img src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">LP Design</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">Banner Design</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">EC Design</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">HTML / CSS Coding</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">Illustration</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">LP Design</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">Banner Design</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">EC Design</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">HTML / CSS Coding</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
+      <span class="ticker-item">Illustration</span><span class="ticker-item ticker-sep"><img class="season-summer" loading="lazy" src="img/season/summer/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon1.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></span>
     </div>
   </div>
 
@@ -254,7 +282,7 @@
           <div class="section-label">01 — Works</div>
           <div style="display:flex; align-items:flex-start; gap:1rem;">
             <h2 class="section-title" style="margin-bottom:0;">Selected<br><em>Works</em></h2>
-            <img src="img/season/autumn/works.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:3rem;">
+            <img class="season-summer" loading="lazy" src="img/season/summer/works.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:3rem;"><img class="season-autumn" loading="lazy" src="img/season/autumn/works.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:3rem;">
           </div>
         </div>
         <!-- ★ フィルタータブ -->
@@ -425,7 +453,7 @@
         <div class="section-label">02 — Skill</div>
         <div style="display:flex; align-items:flex-start; gap:1rem;">
           <h2 class="section-title" style="margin-bottom:0;">Skill &<br><em>Tools</em></h2>
-          <img src="img/season/autumn/skill.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:2rem;">
+          <img class="season-summer" loading="lazy" src="img/season/summer/skill.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:2rem;"><img class="season-autumn" loading="lazy" src="img/season/autumn/skill.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:2rem;">
         </div>
         <p>LP制作をメインに、バナー・EC・コーディング・イラスト・動画編集まで幅広く対応。AIを活用した業務効率化ツールの設計・実装も手がけています</p>
         <div class="skill-list">
@@ -461,27 +489,27 @@
       </div>
       <div class="skills-cards">
         <div class="skill-card">
-          <div class="skill-card-icon"><img src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
+          <div class="skill-card-icon"><img class="season-summer" loading="lazy" src="img/season/summer/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
           <div class="skill-card-name">LP / Banner</div>
           <div class="skill-card-desc">BtoCを得意とし、顧客目線を第一にした売れるLPとバナーを制作。広告代理店での実績多数。</div>
         </div>
         <div class="skill-card">
-          <div class="skill-card-icon"><img src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
+          <div class="skill-card-icon"><img class="season-summer" loading="lazy" src="img/season/summer/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
           <div class="skill-card-name">EC Design</div>
           <div class="skill-card-desc">楽天・Yahoo・Amazon等のEC制作。写真撮影等も経験。</div>
         </div>
         <div class="skill-card">
-          <div class="skill-card-icon"><img src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
+          <div class="skill-card-icon"><img class="season-summer" loading="lazy" src="img/season/summer/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
           <div class="skill-card-name">Coding</div>
           <div class="skill-card-desc">HTML/CSSによるレスポンシブコーディング。改修・更新対応可。</div>
         </div>
         <div class="skill-card">
-          <div class="skill-card-icon"><img src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
+          <div class="skill-card-icon"><img class="season-summer" loading="lazy" src="img/season/summer/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
           <div class="skill-card-name">Illustration</div>
           <div class="skill-card-desc">メインビジュアルから挿絵まで。手描きイラスト・テキストにも対応可能。</div>
         </div>
         <div class="skill-card">
-          <div class="skill-card-icon"><img src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
+          <div class="skill-card-icon"><img class="season-summer" loading="lazy" src="img/season/summer/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"><img class="season-autumn" loading="lazy" src="img/season/autumn/icon2.png" alt="" style="width:40px; height:30px; object-fit:contain; vertical-align:middle;"></div>
           <div class="skill-card-name">Movie</div>
           <div class="skill-card-desc">動画バナー・SNS動画・商品紹介動画の編集・制作に対応。</div>
         </div>
@@ -508,7 +536,7 @@
         <div class="section-label">03 — About</div>
         <div style="display:flex; align-items:flex-start; gap:1rem;">
           <h2 class="section-title" style="margin-bottom:0;">About<br><em>Me</em></h2>
-          <img src="img/season/autumn/about.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:3rem;">
+          <img class="season-summer" loading="lazy" src="img/season/summer/about.png" alt="" style="width:210px;height:auto;opacity:1;flex-shrink:0;margin-top:3rem;"><img class="season-autumn" loading="lazy" src="img/season/autumn/about.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:3rem;">
         </div>
         <div class="about-lead">広い視点で、<br>デザインに関わってきました。</div>
         <p class="about-text">愛知県出身。美術大学デザイン学部卒業後、Webデザイナーとして複数の企業に従事。ネイルサロン経営の経験から、クライアントビジネスの視点も持ち合わせています。</p>
@@ -537,7 +565,7 @@
         <div class="section-label">04 — Contact</div>
         <div style="display:flex; align-items:flex-start; gap:1rem;">
           <h2 class="section-title" style="margin-bottom:0;">Get in<br><em>Touch</em></h2>
-          <img src="img/season/autumn/contact.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:2rem;">
+          <img class="season-summer" loading="lazy" src="img/season/summer/contact.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:2rem;"><img class="season-autumn" loading="lazy" src="img/season/autumn/contact.png" alt="" style="width:140px;height:auto;opacity:1;flex-shrink:0;margin-top:2rem;">
         </div>
         <p>お仕事のご依頼・ご相談は<br>コンタクトフォームよりお気軽にどうぞ。</p>
         <div class="contact-items"></div>
@@ -614,45 +642,70 @@
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
   <script>
-    // メインの絵：落ち葉を舞わせる（木のあたりから出て、島の下のほうで消える）
+    // 落ち葉を舞わせる（メインの絵の上と、左側の名前のスペース）
     (function () {
-      var box = document.getElementById('heroLeaves');
-      if (!box) return;
       var LEAVES = ['img/season/autumn/leaf1.png', 'img/season/autumn/leaf2.png', 'img/season/autumn/leaf3.png', 'img/season/autumn/leaf4.png', 'img/season/autumn/leaf5.png'];
-      var COUNT = 10;       // 葉の枚数
-      var FALL_TIME = 11;   // 落ちるのにかかる秒数（目安）
       function rand(min, max) { return min + Math.random() * (max - min); }
-      // 絵の高さを落ちる距離に使う。画像の読み込み後やサイズ変更時にも更新する
-      function setHeight() { box.style.setProperty('--box-h', box.clientHeight + 'px'); }
-      function build() {
-        box.innerHTML = '';
-        for (var i = 0; i < COUNT; i++) {
-          var topPct = rand(5, 35);
+      function leaves(box, o) {
+        if (!box) return;
+        // 箱の高さを落ちる距離に使う。画像の読み込み後やサイズ変更時にも更新する
+        function setHeight() { box.style.setProperty('--box-h', box.clientHeight + 'px'); }
+        box.style.setProperty('--end-f', o.end);
+        for (var i = 0; i < o.count; i++) {
+          var topPct = rand(o.top[0], o.top[1]);
           var f = document.createElement('div');
           f.className = 'hero-leaf-fall';
-          f.style.left = rand(15, 55) + '%';
+          f.style.left = rand(o.left[0], o.left[1]) + '%';
           f.style.top = topPct + '%';
           f.style.setProperty('--top-f', topPct / 100);
-          f.style.setProperty('--drift', rand(-30, 120) + 'px');
-          f.style.animationDuration = rand(FALL_TIME * 0.75, FALL_TIME * 1.25) + 's';
-          f.style.animationDelay = (-rand(0, FALL_TIME)) + 's';
+          f.style.setProperty('--drift', rand(o.drift[0], o.drift[1]) + 'px');
+          f.style.animationDuration = rand(o.time * 0.75, o.time * 1.25) + 's';
+          f.style.animationDelay = (-rand(0, o.time)) + 's';
           var w = document.createElement('div');
           w.className = 'hero-leaf-sway';
           w.style.setProperty('--sway', rand(8, 22) + 'px');
           w.style.setProperty('--r1', rand(-60, -20) + 'deg');
           w.style.setProperty('--r2', rand(30, 80) + 'deg');
-          w.style.setProperty('--size', rand(16, 28) + 'px');
+          w.style.setProperty('--size', rand(o.size[0], o.size[1]) + 'px');
           w.style.animationDuration = rand(1.8, 3.4) + 's';
           var img = document.createElement('img');
           img.src = LEAVES[i % LEAVES.length];
           img.alt = '';
           w.appendChild(img); f.appendChild(w); box.appendChild(f);
         }
+        if (window.ResizeObserver) { new ResizeObserver(setHeight).observe(box); }
+        else { window.addEventListener('resize', setHeight); window.addEventListener('load', setHeight); }
+        setHeight();
       }
-      if (window.ResizeObserver) { new ResizeObserver(setHeight).observe(box); }
-      else { window.addEventListener('resize', setHeight); window.addEventListener('load', setHeight); }
-      setHeight();
-      build();
+      // メインの絵：木のあたりから出て、島の下のほうで消える
+      leaves(document.getElementById('heroLeaves'), { count: 10, time: 11, left: [15, 55], top: [5, 35], end: 0.85, drift: [-30, 120], size: [16, 28] });
+      // 左側：上から全体に降って、下の端で消える
+      leaves(document.getElementById('heroLeavesLeft'), { count: 5, time: 18, left: [0, 95], top: [-8, 10], end: 1.02, drift: [-20, 80], size: [18, 30] });
+    })();
+  </script>
+  <script>
+    // 季節の切り替えボタン（選んだ季節は作品ページにも引き継がれる）
+    (function () {
+      var root = document.documentElement;
+      var btns = document.querySelectorAll('.season-btn');
+      function sync() {
+        var cur = root.getAttribute('data-season');
+        btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.season === cur ? 'true' : 'false'); });
+      }
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var next = b.dataset.season;
+          if (next === root.getAttribute('data-season')) return;
+          try { localStorage.setItem('season', next); } catch (e) {}
+          root.classList.add('season-switching');
+          setTimeout(function () {
+            root.setAttribute('data-season', next);
+            sync();
+            root.classList.remove('season-switching');
+          }, 300);
+        });
+      });
+      sync();
     })();
   </script>
 </body>

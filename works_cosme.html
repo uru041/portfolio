@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <script>
+    // 季節の決定：URLの ?season= → 前回選んだ季節 → 今日の月（6〜8月は夏、それ以外は秋）
+    (function () {
+      var S = ['summer', 'autumn'], s = null;
+      try { s = localStorage.getItem('season'); } catch (e) {}
+      var q = new URLSearchParams(location.search).get('season');
+      if (S.indexOf(q) >= 0) s = q;
+      if (S.indexOf(s) < 0) { var m = new Date().getMonth() + 1; s = (m >= 6 && m <= 8) ? 'summer' : 'autumn'; }
+      document.documentElement.setAttribute('data-season', s);
+    })();
+  </script>
+  <script>
     // 認証チェック（未ログインならパスワード画面へ。入力後にこのページへ戻る）
     if (sessionStorage.getItem('auth') !== 'ok') {
       var next = location.pathname.split('/').pop() + location.hash;
