@@ -167,7 +167,7 @@
       0%   { transform: translate(0, 0); opacity: 0; }
       10%  { opacity: 1; }
       80%  { opacity: 1; }
-      100% { transform: translate(var(--drift), var(--fall-h)); opacity: 0; }
+      100% { transform: translate(var(--drift), calc(var(--box-h, 0px) * (0.85 - var(--top-f)))); opacity: 0; }
     }
     @keyframes heroLeafSway {
       from { transform: translateX(calc(var(--sway) * -1)) rotate(var(--r1)); }
@@ -608,8 +608,9 @@
       var COUNT = 10;       // 葉の枚数
       var FALL_TIME = 11;   // 落ちるのにかかる秒数（目安）
       function rand(min, max) { return min + Math.random() * (max - min); }
+      // 絵の高さを落ちる距離に使う。画像の読み込み後やサイズ変更時にも更新する
+      function setHeight() { box.style.setProperty('--box-h', box.clientHeight + 'px'); }
       function build() {
-        var h = box.clientHeight;
         box.innerHTML = '';
         for (var i = 0; i < COUNT; i++) {
           var topPct = rand(5, 35);
@@ -617,7 +618,7 @@
           f.className = 'hero-leaf-fall';
           f.style.left = rand(15, 55) + '%';
           f.style.top = topPct + '%';
-          f.style.setProperty('--fall-h', (h * (0.85 - topPct / 100)) + 'px');
+          f.style.setProperty('--top-f', topPct / 100);
           f.style.setProperty('--drift', rand(-30, 120) + 'px');
           f.style.animationDuration = rand(FALL_TIME * 0.75, FALL_TIME * 1.25) + 's';
           f.style.animationDelay = (-rand(0, FALL_TIME)) + 's';
@@ -634,8 +635,9 @@
           w.appendChild(img); f.appendChild(w); box.appendChild(f);
         }
       }
-      var timer;
-      window.addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(build, 200); });
+      if (window.ResizeObserver) { new ResizeObserver(setHeight).observe(box); }
+      else { window.addEventListener('resize', setHeight); window.addEventListener('load', setHeight); }
+      setHeight();
       build();
     })();
   </script>
