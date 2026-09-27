@@ -182,6 +182,7 @@
 
     /* メインの絵：舞う落ち葉 */
     .hero-leaves { position: absolute; inset: 0; pointer-events: none; }
+    .hero-leaves-left { z-index: -1; overflow: hidden; }
     .hero-leaf-fall { position: absolute; opacity: 0; animation: heroLeafFall linear infinite; }
     .hero-leaf-sway { animation: heroLeafSway ease-in-out infinite alternate; }
     .hero-leaf-sway img { display: block; width: var(--size); height: auto; }
@@ -189,7 +190,7 @@
       0%   { transform: translate(0, 0); opacity: 0; }
       10%  { opacity: 1; }
       80%  { opacity: 1; }
-      100% { transform: translate(var(--drift), calc(var(--box-h, 0px) * (0.85 - var(--top-f)))); opacity: 0; }
+      100% { transform: translate(var(--drift), calc(var(--box-h, 0px) * (var(--end-f, 0.85) - var(--top-f)))); opacity: 0; }
     }
     @keyframes heroLeafSway {
       from { transform: translateX(calc(var(--sway) * -1)) rotate(var(--r1)); }
@@ -233,6 +234,7 @@
   <!-- ヒーロー -->
   <section class="hero">
     <div class="hero-left">
+      <div class="hero-leaves hero-leaves-left" id="heroLeavesLeft" aria-hidden="true"></div>
       <div class="hero-eyebrow">Web Designer × Illustrator</div>
       <h1 class="hero-name">Rika<br><em>Yamada</em></h1>
       <div class="hero-subtitle">PORTFOLIO</div>
@@ -640,45 +642,45 @@
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
   <script>
-    // メインの絵：落ち葉を舞わせる（木のあたりから出て、島の下のほうで消える）
+    // 落ち葉を舞わせる（メインの絵の上と、左側の名前のスペース）
     (function () {
-      var box = document.getElementById('heroLeaves');
-      if (!box) return;
       var LEAVES = ['img/season/autumn/leaf1.png', 'img/season/autumn/leaf2.png', 'img/season/autumn/leaf3.png', 'img/season/autumn/leaf4.png', 'img/season/autumn/leaf5.png'];
-      var COUNT = 10;       // 葉の枚数
-      var FALL_TIME = 11;   // 落ちるのにかかる秒数（目安）
       function rand(min, max) { return min + Math.random() * (max - min); }
-      // 絵の高さを落ちる距離に使う。画像の読み込み後やサイズ変更時にも更新する
-      function setHeight() { box.style.setProperty('--box-h', box.clientHeight + 'px'); }
-      function build() {
-        box.innerHTML = '';
-        for (var i = 0; i < COUNT; i++) {
-          var topPct = rand(5, 35);
+      function leaves(box, o) {
+        if (!box) return;
+        // 箱の高さを落ちる距離に使う。画像の読み込み後やサイズ変更時にも更新する
+        function setHeight() { box.style.setProperty('--box-h', box.clientHeight + 'px'); }
+        box.style.setProperty('--end-f', o.end);
+        for (var i = 0; i < o.count; i++) {
+          var topPct = rand(o.top[0], o.top[1]);
           var f = document.createElement('div');
           f.className = 'hero-leaf-fall';
-          f.style.left = rand(15, 55) + '%';
+          f.style.left = rand(o.left[0], o.left[1]) + '%';
           f.style.top = topPct + '%';
           f.style.setProperty('--top-f', topPct / 100);
-          f.style.setProperty('--drift', rand(-30, 120) + 'px');
-          f.style.animationDuration = rand(FALL_TIME * 0.75, FALL_TIME * 1.25) + 's';
-          f.style.animationDelay = (-rand(0, FALL_TIME)) + 's';
+          f.style.setProperty('--drift', rand(o.drift[0], o.drift[1]) + 'px');
+          f.style.animationDuration = rand(o.time * 0.75, o.time * 1.25) + 's';
+          f.style.animationDelay = (-rand(0, o.time)) + 's';
           var w = document.createElement('div');
           w.className = 'hero-leaf-sway';
           w.style.setProperty('--sway', rand(8, 22) + 'px');
           w.style.setProperty('--r1', rand(-60, -20) + 'deg');
           w.style.setProperty('--r2', rand(30, 80) + 'deg');
-          w.style.setProperty('--size', rand(16, 28) + 'px');
+          w.style.setProperty('--size', rand(o.size[0], o.size[1]) + 'px');
           w.style.animationDuration = rand(1.8, 3.4) + 's';
           var img = document.createElement('img');
           img.src = LEAVES[i % LEAVES.length];
           img.alt = '';
           w.appendChild(img); f.appendChild(w); box.appendChild(f);
         }
+        if (window.ResizeObserver) { new ResizeObserver(setHeight).observe(box); }
+        else { window.addEventListener('resize', setHeight); window.addEventListener('load', setHeight); }
+        setHeight();
       }
-      if (window.ResizeObserver) { new ResizeObserver(setHeight).observe(box); }
-      else { window.addEventListener('resize', setHeight); window.addEventListener('load', setHeight); }
-      setHeight();
-      build();
+      // メインの絵：木のあたりから出て、島の下のほうで消える
+      leaves(document.getElementById('heroLeaves'), { count: 10, time: 11, left: [15, 55], top: [5, 35], end: 0.85, drift: [-30, 120], size: [16, 28] });
+      // 左側：上から全体に降って、下の端で消える
+      leaves(document.getElementById('heroLeavesLeft'), { count: 8, time: 15, left: [0, 95], top: [-8, 10], end: 1.02, drift: [-20, 80], size: [18, 30] });
     })();
   </script>
   <script>
